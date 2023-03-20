@@ -23,7 +23,7 @@ autoApiJsGenerateHelper.setAxiosPath("axios");	//前端请求发送文件路径
 autoApiJsGenerateHelper.setFileSavePath("*****");	//js生成文件保存路径
 autoApiJsGenerateHelper.generate();
 ```
-
+**之后更新:**
 - [ ] 根据开发需要，可以更换js生成模板
 - [ ] 读取配置文件完成加载
 - [ ] 可以选择controller来生成js方法
