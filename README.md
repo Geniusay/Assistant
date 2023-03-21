@@ -11,8 +11,9 @@
 <dependency>
     <groupId>com.github.assistant</groupId>
     <artifactId>assistant</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
+<!--> 该版本支持Java11及以上 <-->
 ```
 
 ## 目前拥有的工具类
