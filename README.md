@@ -9,7 +9,7 @@
 ##  安装使用
 ```xml
 <dependency>
-    <groupId>com.github.assistant</groupId>
+    <groupId>io.github.969025903</groupId>
     <artifactId>assistant</artifactId>
     <version>1.0.1</version>
 </dependency>
