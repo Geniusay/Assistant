@@ -15,7 +15,16 @@
 </dependency>
 <!--> 该版本支持Java11及以上 <-->
 ```
+如果出现无法导入的情况，请打开您的maven配置文件(setting.xml文件)，添加一个官方镜像
+```xml
+<mirror>
+    <id>nexus</id>
+    <mirrorOf>internal nexus repository</mirrorOf>
+    <url>https://repo1.maven.org/maven2</url>
+    <mirrorOf>central</mirrorOf>
+</mirror>
 
+```
 ## 目前拥有的工具类
 
 ### 1，StringUtils
@@ -45,3 +54,6 @@ autoApiJsGenerateHelper.generate();
 - [ ] 可以选择controller来生成js方法
 - [ ] 更加全面的js文件生成
 - [ ] 可以为生成的js文件添加注释
+
+### TokenUtil token工具
+具备：生成Token，解析Token，刷新Token，验证Token，预定Token生效时间功能

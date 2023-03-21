@@ -1,2 +1,10 @@
 server:
   port: 8080
+
+
+assistant:
+  token:
+    access-token-expire-time: 3600
+    access-token-time-unit: SECONDS
+    enable-refresh: true
+

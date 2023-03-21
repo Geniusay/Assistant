@@ -27,13 +27,17 @@ import java.util.Set;
  * @author Genius
  *
  **/
+
+/*
+* 生成前端api的js文件
+ */
 @Component
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class AutoApiJsGenerateHelper {
 
-    MethodDecompose methodDecompose;
+    private MethodDecompose methodDecompose;    //方法分解器
 
     private WebApplicationContext webApplicationContext;
 
@@ -52,6 +56,7 @@ public class AutoApiJsGenerateHelper {
         this.webApplicationContext = webApplicationContext;
     }
 
+    //构建和生成js文件
     public void generate(){
         //生成文件
         //生成文件内容
@@ -127,6 +132,7 @@ public class AutoApiJsGenerateHelper {
         generateFile(fileName, mouldBuilder);
     }
 
+    //生成文件
     private void generateFile(String fileName, StringBuilder mouldBuilder) {
         try (BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(
                 new FileOutputStream(fileSavePath + fileName +prefix))) {
