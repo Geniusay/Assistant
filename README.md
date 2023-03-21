@@ -51,9 +51,10 @@ autoApiJsGenerateHelper.generate();
 **之后更新:**
 - [ ] 根据开发需要，可以更换js生成模板
 - [ ] 读取配置文件完成加载
-- [ ] 可以选择controller来生成js方法
+- [x] 可以选择controller来生成js方法
 - [ ] 更加全面的js文件生成
 - [ ] 可以为生成的js文件添加注释
+- [x] 异步
 
-### TokenUtil token工具
+### 3，TokenUtil token工具
 具备：生成Token，解析Token，刷新Token，验证Token，预定Token生效时间功能

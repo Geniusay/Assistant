@@ -1,15 +1,20 @@
 package com.genius.assistant;
 
 import com.genius.assistant.common.Token;
+import com.genius.assistant.controller.HelloController;
 import com.genius.assistant.helper.AutoApiJsGenerateHelper;
 import com.genius.assistant.util.StringUtils;
 import com.genius.assistant.util.token.TokenUtil;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -37,7 +42,8 @@ public class assistantApplicationTests {
         public void TestAutoApiJsGenerateHelper(){
                 autoApiJsGenerateHelper.setAxiosPath("axios");
                 autoApiJsGenerateHelper.setFileSavePath("E:\\Project\\Assistant\\src\\main\\resources\\js\\");
-                autoApiJsGenerateHelper.generate();
+                Class clazz[] = {HelloController.class};
+                autoApiJsGenerateHelper.filter(List.of()).generate(true);
         }
 
         @Test
@@ -60,5 +66,11 @@ public class assistantApplicationTests {
                         tokenUtil.createToken("user", user, user.name,new Date(System.currentTimeMillis()+TimeUnit.MINUTES.toMillis(30)));
                 System.out.println(user1);
                 System.out.println(tokenUtil.parseTokenToToken(user1.getAccessToken(),user1.getRefreshToken(),"user",User.class));
+        }
+
+        @Test
+        public void Test(){
+                RestController bean = applicationContext.getBean(RestController.class);
+                System.out.println(bean);
         }
 }
