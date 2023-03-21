@@ -6,6 +6,15 @@
 
   一个基于SpringBoot框架的后端开发工具。简便后端开发，提供多种高效率高性能的工具类，包装各种web开发中所需要的功能，作为你后端开发的小帮手。
 
+##  安装使用
+```xml
+<dependency>
+    <groupId>com.github.assistant</groupId>
+    <artifactId>assistant</artifactId>
+    <version>1.0.0</version>
+</dependency>
+```
+
 ## 目前拥有的工具类
 
 ### 1，StringUtils
@@ -23,6 +32,12 @@ autoApiJsGenerateHelper.setAxiosPath("axios");	//前端请求发送文件路径
 autoApiJsGenerateHelper.setFileSavePath("*****");	//js生成文件保存路径
 autoApiJsGenerateHelper.generate();
 ```
+
+```java
+//项目入口加上
+@ComponentScan(basePackages = {"com.genius.assistant"});
+```
+
 **之后更新:**
 - [ ] 根据开发需要，可以更换js生成模板
 - [ ] 读取配置文件完成加载

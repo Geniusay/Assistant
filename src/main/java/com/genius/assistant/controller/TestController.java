@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.*;
 
 /**
  * @author Genius
- * @date 2023/03/20 20:09
+ *
  **/
 @RestController
 @RequestMapping("/test")

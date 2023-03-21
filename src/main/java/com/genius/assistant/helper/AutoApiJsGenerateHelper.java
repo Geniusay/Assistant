@@ -25,7 +25,7 @@ import java.util.Set;
 
 /**
  * @author Genius
- * @date 2023/03/20 21:05
+ *
  **/
 @Component
 @Data
@@ -33,10 +33,8 @@ import java.util.Set;
 @NoArgsConstructor
 public class AutoApiJsGenerateHelper {
 
-    @Autowired
     MethodDecompose methodDecompose;
 
-    @Autowired
     private WebApplicationContext webApplicationContext;
 
     private String axiosPath; //前端axios的导入路径
@@ -47,6 +45,12 @@ public class AutoApiJsGenerateHelper {
 
     private final static String GET = "get";
     private final static String POST = "post";
+
+    @Autowired
+    public AutoApiJsGenerateHelper(MethodDecompose methodDecompose, WebApplicationContext webApplicationContext) {
+        this.methodDecompose = methodDecompose;
+        this.webApplicationContext = webApplicationContext;
+    }
 
     public void generate(){
         //生成文件
