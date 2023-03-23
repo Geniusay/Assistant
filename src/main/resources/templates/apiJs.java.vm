@@ -1,0 +1,25 @@
+import request from '$axiosPath';
+
+
+#foreach($method in $apiJsInfo.getApiMethodList())
+export function $method.getMethodName()(#foreach($param in $method.getMethodParam())$param#if($velocityCount!= $method.getMethodParam().size()),#end #end) {
+     return request({
+        url: '$method.getMethodUrl()/'#if($method.getMethodType() == 'get'&&$method.getIsRestFul()==true)#foreach($param in $method.getMethodParam())+ $param +'/'#end#end,
+        method: $method.getMethodType(),
+    #if($method.getMethodType() == 'get'&&$method.getIsRestFul()==false)
+    params: {
+    #foreach($param in $method.getMethodParam())
+        $param:$param,
+    #end
+    }
+    #elseif($method.getMethodType() == 'post')
+    data: {
+    #foreach($param in $method.getMethodParam())
+        $param:$param,
+    #end
+    }
+    #end
+ });
+}
+#end
+

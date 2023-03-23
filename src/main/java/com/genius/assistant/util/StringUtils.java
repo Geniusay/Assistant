@@ -62,4 +62,14 @@ public class StringUtils extends org.springframework.util.StringUtils {
         return str.replaceAll(" ","").trim();
     }
 
+    //去除双斜线
+    public static String removeDoubleSlash(String str){
+        return str.replaceAll("//","").trim();
+    }
+
+    //去除双反斜线
+    public static String removeDoubleBackslash(String str){
+        return str.replaceAll("\\\\","").trim();
+    }
+
 }

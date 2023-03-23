@@ -8,3 +8,9 @@ assistant:
     access-token-time-unit: SECONDS
     enable-refresh: true
 
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3307/assistant?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+    username: root
+    password: root

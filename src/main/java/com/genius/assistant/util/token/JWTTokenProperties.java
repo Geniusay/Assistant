@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * @author Genius
- * @date 2023/03/21 15:16
+ *
  **/
 @Data
 @ConfigurationProperties(prefix = "assistant.token")

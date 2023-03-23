@@ -20,8 +20,8 @@ public class HelloController {
         System.out.println("helloPost");
     }
 
-    @GetMapping("/helloGet/{id}")
-    public void helloGetById(@PathVariable("id") String id){
+    @GetMapping("/helloGet/{id}/{name}")
+    public void helloGetById(@PathVariable("id") String id,@PathVariable("name") String name){
         System.out.println("helloGet");
     }
 
