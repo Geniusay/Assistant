@@ -11,7 +11,7 @@
 <dependency>
     <groupId>io.github.969025903</groupId>
     <artifactId>assistant</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
 </dependency>
 <!--> 该版本支持Java11及以上 <-->
 ```
