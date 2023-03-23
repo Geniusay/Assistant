@@ -7,7 +7,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 /**
  * @author Genius
- * @date 2023/03/23 20:02
  **/
 @SpringBootTest
 public class ApiJsTemplateBuilderTest {

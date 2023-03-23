@@ -6,7 +6,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 /**
  * @author Genius
- * @date 2023/03/23 21:55
  **/
 @SpringBootTest
 public class PathUtilsTest {

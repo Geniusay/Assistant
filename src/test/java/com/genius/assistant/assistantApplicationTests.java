@@ -2,7 +2,7 @@ package com.genius.assistant;
 
 import com.genius.assistant.common.Token;
 import com.genius.assistant.controller.HelloController;
-import com.genius.assistant.helper.AutoApiJsGenerateHelper;
+import com.genius.assistant.warmup.generate.AutoApiJsGenerate;
 import com.genius.assistant.util.StringUtils;
 import com.genius.assistant.util.token.TokenUtil;
 import org.junit.jupiter.api.Test;
@@ -10,9 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -28,7 +26,7 @@ public class assistantApplicationTests {
         public WebApplicationContext applicationContext;
 
         @Autowired
-        AutoApiJsGenerateHelper autoApiJsGenerateHelper;
+        AutoApiJsGenerate autoApiJsGenerateHelper;
 
 
         @Test
@@ -38,13 +36,6 @@ public class assistantApplicationTests {
                 System.out.println(StringUtils.removeParenthesesNotContent("String(1234)"));
         }
 
-        @Test
-        public void TestAutoApiJsGenerateHelper(){
-                autoApiJsGenerateHelper.setAxiosPath("axios");
-                autoApiJsGenerateHelper.setFileSavePath("E:\\Project\\Assistant\\src\\main\\resources\\js\\");
-                Class clazz[] = {HelloController.class};
-                autoApiJsGenerateHelper.filter(List.of()).generate(true);
-        }
 
         @Test
         public void TestTimeUnit(){
@@ -73,4 +64,5 @@ public class assistantApplicationTests {
                 RestController bean = applicationContext.getBean(RestController.class);
                 System.out.println(bean);
         }
+
 }
