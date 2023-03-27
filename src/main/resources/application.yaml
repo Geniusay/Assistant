@@ -7,6 +7,9 @@ assistant:
     access-token-expire-time: 3600
     access-token-time-unit: SECONDS
     enable-refresh: true
+  regex:
+    pool:
+      phone: ^1[3|4|5|7|8][0-9]{9}$
 
 spring:
   datasource:

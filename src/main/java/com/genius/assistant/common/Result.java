@@ -4,6 +4,7 @@ import com.genius.assistant.pool.StatusPool;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.apache.commons.lang.ObjectUtils;
 
 /**
  * @author Genius
@@ -27,13 +28,14 @@ public class Result<T> {
         this.data = data;
     }
 
-    private static <T> void success(Status status, Result result){
+    private static <T> void success(Status status, Result<T> result){
+
         result.setCode(status.getCode());
         result.setMsg(status.getMsg());
     }
 
-    public static Result success(){
-        Result result = new Result();
+    public static <T> Result<T> success(){
+        Result<T> result = new Result<T>();
         success(StatusPool.Success,result);
         return result;
     }
@@ -50,29 +52,33 @@ public class Result<T> {
         return result;
     }
 
-    public static Result error(String code,String msg){
-        Result result = new Result();
+    public static <T> Result<T> error(String code,String msg){
+        Result<T> result = new Result<T>();
         result.setCode(code);
         result.setMsg(msg);
         return result;
     }
 
 
-    public static Result error(Status error){
-        Result result = new Result();
+    public static <T> Result<T> error(Status error){
+        Result<T> result = new Result<T>();
         result.setCode(error.getCode());
         result.setMsg(error.getMsg());
         return result;
     }
 
-    public static Result throwError(Boolean Condition, Status error) throws Exception {
+    //抛出Status异常
+    public static <T> Result<T> throwError(Boolean Condition, Status error) throws Exception {
+        if(error!=null&&error.getException()!=null){
+            throw new RuntimeException("Status异常为Null");
+        }
         if (Condition) {
             throw error.getException();
         }
         return Result.success();
     }
 
-    public static Result throwError(Status error) throws Exception {
+    public static <T> Result<T> throwError(Status error) throws Exception {
         return throwError(true,error);
     }
 
