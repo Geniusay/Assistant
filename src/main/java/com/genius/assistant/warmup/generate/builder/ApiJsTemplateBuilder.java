@@ -43,6 +43,9 @@ public class ApiJsTemplateBuilder implements TemplateBuilder<ApiJsTemplateFile> 
 
     private final static String POST = "post";
 
+    /*
+    只会生成带有RequestMapping注解的方法，且必须标注方法类型Get或者Post，否则不会生成
+     */
     @Override
     public ApiJsTemplateFile build() {
         preBuild();
@@ -54,50 +57,72 @@ public class ApiJsTemplateBuilder implements TemplateBuilder<ApiJsTemplateFile> 
         RequestMappingHandlerMapping mapping = webApplicationContext.getBean(RequestMappingHandlerMapping.class);
         Map<RequestMappingInfo, HandlerMethod> methodMap = mapping.getHandlerMethods();
         for(RequestMappingInfo info: methodMap.keySet()){
-            String type = StringUtils.removeBracketsNotContent(info.getMethodsCondition().getMethods().toString()).toLowerCase();
-            if(!type.equals(GET) && !type.equals(POST)){
+            Object[] types = info.getMethodsCondition().getMethods().toArray();
+
+            if(types.length == 0){
                 continue;
             }
-            Class controllerClass = methodMap.get(info).getBeanType();
-            String className = controllerClass.getSimpleName();
-            ApiJs apiJs;
-            if(apiJsMap.containsKey(className)) {
-                apiJs = apiJsMap.get(className);
-            }else{
-                apiJs = new ApiJs();
-                apiJs.setControllerClassName(className);
-                apiJsMap.put(className, apiJs);
+
+            for (Object obj : types) {
+                String type = obj.toString().toLowerCase();
+                if(!type.equals(GET) && !type.equals(POST)){
+                    continue;
+                }
+                Class controllerClass = methodMap.get(info).getBeanType();
+                String className = controllerClass.getSimpleName();
+                ApiJs apiJs;
+                if(apiJsMap.containsKey(className)) {
+                    apiJs = apiJsMap.get(className);
+                }else{
+                    apiJs = new ApiJs();
+                    apiJs.setControllerClassName(className);
+                    apiJsMap.put(className, apiJs);
+                }
+                //构造apiMethod
+                ApiMethod apiMethod = new ApiMethod();
+                extractedMethod(methodMap, info, types, type, apiMethod);
+
+                apiJs.getApiMethodList().add(apiMethod);
+
             }
-            //构造apiMethod
-            ApiMethod apiMethod = new ApiMethod();
-            Method method = methodMap.get(info).getMethod();
-            String methodName = method.getName();
-            apiMethod.setIsRestFul(false);
-            List<String> methodParam = methodDecompose.getMethodParamNameByDiscover(method);
-            apiMethod.setMethodName(methodName);
-            apiMethod.setMethodParam(methodParam);
 
-            String url = StringUtils.removeBracketsNotContent(info.getPatternsCondition().getPatterns().toString()); //返回url
-            assert (!StringUtils.isEmpty(url));
-
-            String JsUrl = url;
-            if(type.equals(GET) && url.contains("{")){
-                JsUrl = StringUtils.removeBraces(url);
-                JsUrl = JsUrl.substring(0, JsUrl.length()-1);
-                apiMethod.setIsRestFul(true);
-            }
-            apiMethod.setMethodUrl(JsUrl);
-            apiMethod.setMethodType(type);
-
-            apiJs.getApiMethodList().add(apiMethod);
-            apiJsTemplateFile.getApiJsList().add(apiJs);
         }
+        apiJsMap.values().forEach(ApiJs->{
+            apiJsTemplateFile.getApiJsList().add(ApiJs);
+        });
         return apiJsTemplateFile;
+    }
+
+    //构造apiMethod
+    private void extractedMethod(Map<RequestMappingInfo, HandlerMethod> methodMap, RequestMappingInfo info, Object[] types, String type, ApiMethod apiMethod) {
+        Method method = methodMap.get(info).getMethod();
+        String methodName = types.length>1? multiMethod(method.getName(), type):method.getName();
+
+        apiMethod.setIsRestFul(false);
+        List<String> methodParam = methodDecompose.getMethodParamNameByDiscover(method);
+        apiMethod.setMethodName(methodName);
+        apiMethod.setMethodParam(methodParam);
+
+        String url = StringUtils.removeBracketsNotContent(info.getPatternsCondition().getPatterns().toString()); //返回url
+        assert (!StringUtils.isEmpty(url));
+
+        String JsUrl = url;
+        if(type.equals(GET) && url.contains("{")){
+            JsUrl = StringUtils.removeBraces(url);
+            JsUrl = JsUrl.substring(0, JsUrl.length()-1);
+            apiMethod.setIsRestFul(true);
+        }
+        apiMethod.setMethodUrl(JsUrl);
+        apiMethod.setMethodType(type);
     }
 
     public void preBuild() {
         if(StringUtils.isEmpty(axiosPath)){
             axiosPath = "axios";
         }
+    }
+
+    private String multiMethod(String methodName,String type){
+        return methodName + type.toUpperCase();
     }
 }

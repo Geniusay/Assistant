@@ -141,7 +141,7 @@ public class AutoApiJsGenerate extends AutoGenerate {
                 String JsFunction = methodName + "(";
                 StringBuilder JsParamsStr = new StringBuilder();
 
-                JsParamsStr.append(type=="post"?"params: {\r":"data: {\r");
+                JsParamsStr.append(type.equals("post")?"data: {\r":"params: {\r");
                 for(int i = 0; i < params.size(); i++){
                     String param = params.get(i);
                     JsFunction += param;

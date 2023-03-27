@@ -46,11 +46,10 @@ public class AutoApiJsGenerateTest {
     @Test
     public void testGenerateByDIY(){
 
-        /*autoApiJsGenerate.
-                setIsJsMoodleGenerated(true).               //是否使用传统Js模板
-                filter(List.of(TestController.class)).      //过滤掉不需要生成js文件的controller
-                setFileSavePath("E:\\Project\\Assistant\\src\\main\\resources\\js"). //文件保存区域
-                generate(true); //是否异步生成*/
+//        autoApiJsGenerate.
+//                setIsJsMoodleGenerated(true).               //是否使用传统Js模板
+//                setFileSavePath("E:\\Project\\Assistant\\src\\main\\resources\\js"). //文件保存区域
+//                generate();
 
 
 
@@ -59,6 +58,6 @@ public class AutoApiJsGenerateTest {
                 .setTemplatePath("src/main/resources/templates/")//选择模板加载路径
                 .setTemplateName("apiJs.java.vm")   //选择模板名字
                 .setFileSavePath("E:\\Project\\Assistant\\src\\main\\resources\\js")
-                .generate(true); //是否异步生成
+                .generate(false); //是否异步生成
     }
 }

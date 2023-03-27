@@ -29,4 +29,9 @@ public class HelloController {
     public void helloNotRestful(@RequestParam("id") String id,@RequestParam("name") String name){
         System.out.println("helloNotRestful");
     }
+
+    @RequestMapping(value = "/helloRequest",method = {RequestMethod.GET,RequestMethod.POST})
+    public void helloRequest(){
+        System.out.println("helloRequest");
+    }
 }
