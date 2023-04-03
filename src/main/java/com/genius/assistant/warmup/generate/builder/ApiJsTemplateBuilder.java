@@ -9,11 +9,11 @@ import com.genius.assistant.warmup.generate.autotemplate.TemplateFile;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.method.HandlerMethod;
-import org.springframework.web.servlet.mvc.condition.PathPatternsRequestCondition;
 import org.springframework.web.servlet.mvc.condition.PatternsRequestCondition;
 import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
@@ -142,12 +142,12 @@ public class ApiJsTemplateBuilder implements TemplateBuilder<ApiJsTemplateFile> 
         }else{
             //说明为高版本
             try {
-                PathPatternsRequestCondition pathPatternsCondition = (PathPatternsRequestCondition)RequestMappingInfo.
+                Object pathPatternsCondition = RequestMappingInfo.
                         class.getMethod("getPathPatternsCondition").invoke(info);
-                if(pathPatternsCondition != null){
-                    url = pathPatternsCondition.getPatterns().toString();
-                }
-            } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+                url = Class.forName("org.springframework.web.servlet.mvc.condition.PathPatternsRequestCondition")
+                        .getMethod("getPatterns").invoke(pathPatternsCondition).toString();
+            } catch (IllegalAccessException | InvocationTargetException
+                     | NoSuchMethodException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
         }
