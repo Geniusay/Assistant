@@ -13,9 +13,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.method.HandlerMethod;
+import org.springframework.web.servlet.mvc.condition.PathPatternsRequestCondition;
+import org.springframework.web.servlet.mvc.condition.PatternsRequestCondition;
 import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.List;
@@ -103,7 +106,7 @@ public class ApiJsTemplateBuilder implements TemplateBuilder<ApiJsTemplateFile> 
         apiMethod.setMethodName(methodName);
         apiMethod.setMethodParam(methodParam);
 
-        String url = StringUtils.removeBracketsNotContent(info.getPatternsCondition().getPatterns().toString()); //返回url
+        String url = versionControl_getPatternsCondition(info); //采用版本控制获取url
         assert (!StringUtils.isEmpty(url));
 
         String JsUrl = url;
@@ -124,5 +127,30 @@ public class ApiJsTemplateBuilder implements TemplateBuilder<ApiJsTemplateFile> 
 
     private String multiMethod(String methodName,String type){
         return methodName + type.toUpperCase();
+    }
+
+    /*
+    以下为版本控制代码，由于高版本的springboot改用getPathPatternsCondition方法，
+    而本框架采用的是低版本springboot的getPatternCondition方法，导致项目报错异常，
+    所以采用版本控制方法，来获取url
+     */
+    private String versionControl_getPatternsCondition(RequestMappingInfo info) {
+        PatternsRequestCondition patternsCondition = info.getPatternsCondition();
+        String url = "";
+        if(patternsCondition != null){
+            url =  info.getPatternsCondition().getPatterns().toString();
+        }else{
+            //说明为高版本
+            try {
+                PathPatternsRequestCondition pathPatternsCondition = (PathPatternsRequestCondition)RequestMappingInfo.
+                        class.getMethod("getPathPatternsCondition").invoke(info);
+                if(pathPatternsCondition != null){
+                    url = pathPatternsCondition.getPatterns().toString();
+                }
+            } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return StringUtils.removeBracketsNotContent(url);
     }
 }

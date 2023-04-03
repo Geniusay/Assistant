@@ -5,13 +5,13 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.3.9.RELEASE</version>
+        <version>2.6.3</version>
         <relativePath/>
     </parent>
     <groupId>io.github.969025903</groupId>
     <artifactId>assistant</artifactId>
     <!--需要特别注意,你上传的是SNAPSHOT仓库,所以此处版本号后缀必须带SNAPSHOT-->
-    <version>1.0.3</version>
+    <version>1.0.4</version>
 
     <name>assistant</name>
     <description>Back-end development assistant </description>

@@ -2,7 +2,7 @@ package com.genius.assistant.util.encryption;
 
 /**
  * @author Genius
- * @date 2023/03/24 01:01
+
  **/
 
 public class EncryptionFactory {

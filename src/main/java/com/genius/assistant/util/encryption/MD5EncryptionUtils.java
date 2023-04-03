@@ -7,7 +7,7 @@ import java.security.NoSuchAlgorithmException;
 
 /**
  * @author Genius
- * @date 2023/03/24 00:48
+
  **/
 
 /*Md5加密工具类*/

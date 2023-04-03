@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * @author Genius
- * @date 2023/03/27 23:49
+
  **/
 @Data
 @ConfigurationProperties(prefix = "assistant.regex.pool")

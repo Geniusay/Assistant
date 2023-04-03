@@ -14,7 +14,6 @@ public class CommonFileUtils {
     /**
      * 读取文件
      * @param file
-     * @return
      */
     public static void writeFile(String file,String fileContent) {
         try (BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(
