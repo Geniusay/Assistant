@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.Map;
 
 /**
  * @author Genius
@@ -15,6 +16,8 @@ import java.util.Date;
 public class Token<T> implements java.io.Serializable{
 
     private static final long serialVersionUID = 1L;
+
+    private Map<String,Object> header; //头部
 
     private T payload;
 
@@ -43,7 +46,8 @@ public class Token<T> implements java.io.Serializable{
         this.refreshToken = refreshToken;
     }
 
-    public Token(String accessToken, String refreshToken, String iss, String sub, String aud, Date accessExp, Date refreshExp, Date nbf, Date iat, String jti) {
+    public Token(Map<String,Object> header,String accessToken, String refreshToken, String iss, String sub, String aud, Date accessExp, Date refreshExp, Date nbf, Date iat, String jti) {
+        this.header = header;
         this.accessToken = accessToken;
         this.refreshToken = refreshToken;
         this.iss = iss;

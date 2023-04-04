@@ -8,6 +8,7 @@ import lombok.Data;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 import org.apache.tomcat.util.codec.binary.Base64;
 import javax.annotation.Resource;
@@ -66,12 +67,10 @@ public class TokenUtil<T> {
         * @param isRefresh 是否刷新token
      */
     public Token<T> createToken(Map<String,Object> header, Claims claims
-            , Date iat, Date accessExp,Date refreshExp, Date nbf
-            , String iss, String sub, String jti,String audience,boolean isRefresh){
-
+            , Date iat, Date accessExp, @Nullable Date refreshExp, Date nbf
+            , String iss, String sub, String jti, String audience, boolean isRefresh){
         JwtBuilder jwtBuilder = Jwts.builder();
-
-        if(!Objects.isNull(header)){
+        if(!Objects.isNull(header)) {
             jwtBuilder.setHeader(header);
         }
 
@@ -94,8 +93,10 @@ public class TokenUtil<T> {
             refreshExp = null;
         }
 
-        return new Token<>(accessToken, refreshToken, iss, sub, audience, accessExp, refreshExp, nbf, iat, jti);
+        return new Token<>(header,accessToken, refreshToken, iss, sub, audience, accessExp, refreshExp, nbf, iat, jti);
     }
+
+
 
     public Token<T> createToken(String payloadName,T payload,String subject) {
         Claims claims = creatClaims(payloadName, payload);
@@ -129,40 +130,53 @@ public class TokenUtil<T> {
     }
 
     /*解析Token*/
+    private Jws<Claims> parseTokenToJws(String token) throws Exception{
+        return Jwts.parser()
+                .setSigningKey(generalKey())
+                .parseClaimsJws(token);
 
+    }
     //解析Token
     public Claims parseToken(String token){
-        Claims claims;
         try {
-            claims = Jwts.parser()
-                    .setSigningKey(generalKey())
-                    .parseClaimsJws(token)
-                    .getBody();
+            return parseTokenToJws(token).getBody();
         } catch (Exception e) {
-            //TODO 这里应该抛出TOKEN异常给全局异常捕捉
+            logger.error(e.getMessage());
             return null;
         }
-        return claims;
     }
+
+
 
     //解析Token字符串变为对象
     public T parseTokenToObj(String token, String payloadName, Class<T> clazz) {
         Claims claims = parseToken(token);
+        if(Objects.isNull(claims)){
+            return null;
+        }
         String json = claims.get(payloadName).toString();
         return new Gson().fromJson(json, clazz);
     }
 
     //解析Token字符串变为Token对象
     public Token<T> parseTokenToToken(String accessToken,String refreshToken,String payloadName,Class<T> clazz){
-        Claims claims = parseToken(accessToken);
-        String json = (String) claims.get(payloadName);
-
-        Token<T> tokenObj = new Token<T>(accessToken,refreshToken,claims.getIssuer(),claims.getSubject(),claims.getAudience(),
-                claims.getExpiration(),claims.getExpiration(),claims.getNotBefore(),
-                claims.getIssuedAt(),claims.getId());
-
-        tokenObj.setPayload(new Gson().fromJson(json, clazz));
-        return tokenObj;
+        try {
+            Jws<Claims> claimsJws = parseTokenToJws(accessToken);
+            Claims claims = claimsJws.getBody();
+            if(Objects.isNull(claims)){
+                return null;
+            }
+            String obj = claims.get(payloadName).toString();
+            Token<T> tokenObj = new Token<T>(claimsJws.getHeader(),accessToken,refreshToken,
+                    claims.getIssuer(), claims.getSubject(),claims.getAudience(),
+                    claims.getExpiration(),claims.getExpiration(),claims.getNotBefore(),
+                    claims.getIssuedAt(),claims.getId());
+            tokenObj.setPayload(new Gson().fromJson((String) obj, clazz));
+            return tokenObj;
+        }catch (Exception e){
+            logger.error(e.getMessage());
+            return null;
+        }
     }
 
     public Token<T> parseTokenToToken(String accessToken,String name,Class<T> clazz){
@@ -182,39 +196,41 @@ public class TokenUtil<T> {
         }
     }
 
+
+    public String refreshToken(String oldToken,String refreshToken){
+        Token<T> tToken = refreshToken(new Token<>(oldToken, refreshToken));
+        return tToken==null?null:tToken.getAccessToken();
+    }
+
     /*更新Token
-    * 当access-token过期时，会使用refresh-token来更新access-token
-    * 如果refresh-token也过期了则返回null
-    * */
-    public Token<T> refreshToken(String oldToken,String refreshToken,Map<String,Object> header){
+     * 当access-token过期时，会使用refresh-token来更新access-token
+     * 如果refresh-token也过期了则返回null
+     * */
+    public Token<T> refreshToken(Token<T> token){
+        String oldToken = token.getAccessToken();
+        String refreshToken = token.getRefreshToken();
         if(jwtTokenProperties.getEnableRefresh()){
             logger.info("refresh token is disable,if you want to enable it,please set JWTTokenProperties.EnableRefreshToken to true");
-            if (validateToken(oldToken)) {
-                if(!validateToken(refreshToken)){
+            if (!validateToken(oldToken)) {
+                if(validateToken(refreshToken)){
+                    logger.info("access-token is expire,refreshing!");
                     Jws<Claims> claimsJws = Jwts.parser()
                             .setSigningKey(generalKey())
                             .parseClaimsJws(refreshToken);
 
                     Claims claims = claimsJws.getBody();
-
-                    Token<T> token = createToken(header, claims, claims.getIssuedAt(),
+                    return createToken(token.getHeader(), claims, claims.getIssuedAt(),
                             new Date(System.currentTimeMillis() + jwtTokenProperties.getAccessTokenExpireTime()),
                             new Date(System.currentTimeMillis() + jwtTokenProperties.getRefreshTokenExpireTime()),
                             claims.getNotBefore(), claims.getIssuer(), claims.getSubject(),
                             jwtTokenProperties.getJit(), claims.getAudience(), false);
-                    token.setRefreshToken(refreshToken);
-                    return token;
                 }else{
                     return null;
                 }
             }
         }
 
-        return new Token<T>(oldToken,refreshToken);
-    }
-
-    public Token<T> refreshToken(String oldToken,String refreshToken){
-        return refreshToken(oldToken,refreshToken,null);
+        return token;
     }
 
 }
