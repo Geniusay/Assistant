@@ -37,4 +37,12 @@ public class EncryptionUtilsTest {
         System.out.println("des加密："+ desEncipher);
         System.out.println("des解密："+ EncryptionFactory.getEncryptionUtil(EncryptionType.DES).Decrypt(desEncipher));
     }
+
+    @Test
+    public void newVersionEncryption() throws Exception{
+        EncryptionFactory.add("MD55",new MD5EncryptionUtils());
+        String md55 = EncryptionFactory.getEncryptionUtil("MD55").Encipher("123456");
+        System.out.println("md55加密："+ md55);
+        System.out.println("md55解密："+ EncryptionFactory.getEncryptionUtil("MD55").Decrypt(md55));
+    }
 }
