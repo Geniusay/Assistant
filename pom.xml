@@ -11,7 +11,7 @@
     <groupId>io.github.969025903</groupId>
     <artifactId>assistant</artifactId>
     <!--需要特别注意,你上传的是SNAPSHOT仓库,所以此处版本号后缀必须带SNAPSHOT-->
-    <version>1.0.5</version>
+    <version>1.0.6</version>
 
     <name>assistant</name>
     <description>Back-end development assistant </description>
