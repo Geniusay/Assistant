@@ -43,7 +43,7 @@
 ### 5，JdbcUtil工具
 获取建表语句，表的元信息，表结构等等，主要是用来辅助 数据库表To类的自动生成的，但是写到一半才想起来mybatisplus有这功能了，而且他的模板引擎更完善，于是今后打算把我自己的于mybatisplus的整合在一起使用
 
-### 5，AutoApiJsGenerateHelper
+### 5，AutoApiJs自动生成工具
 
 > 根据项目所拥有的controller类，一键生成前端接口js文件，大大减少了前端后端 Api.js文件的编写和比对，目前适配RestFul风格请求，get请求，post请求，目前可以自定义生成模板，满足你的生成需求
 
