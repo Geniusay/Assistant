@@ -17,12 +17,12 @@
 
 Assistant (opens new window)是一个后端开发的小助手，提供多种工具，自动生成器，以及多种高性能高自由度业务方法，让你在开发道路上更加简便。
 
-## Links
+## 相关链接
 
 - [Documentation](https://tmlgenius.github.io/assistant-docs/)
 - [Gitee](https://gitee.com/sbg-genius/Assistant)
 
-## Features
+## 特点
 
 - **赛前热身**：提供多个开发前的“热身”工具，所谓热身工具指的是快速完成api文件的创建，controller文件，mapper文件等重复度高的编码工作，可以直接开始项目开发
 - **百宝箱**：蕴含多种工具类，在打造项目的无需再东翻西找打造工具
