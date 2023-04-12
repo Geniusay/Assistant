@@ -64,10 +64,12 @@ public class RegexUtils {
         return VerifyRegex(portUrl,regexPool.getUrlPort());
     }
 
-    public boolean VerifyRegex(String str,String regex){
+    public static boolean VerifyRegex(String str,String regex){
         //正则表达式检测
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(str);
         return matcher.find();
     }
+
+
 }

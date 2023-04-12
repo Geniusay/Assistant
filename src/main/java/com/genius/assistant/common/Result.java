@@ -16,13 +16,13 @@ import org.apache.commons.lang.ObjectUtils;
 @NoArgsConstructor
 public class Result<T> {
 
-    private String code;
+    private String code;    //状态码
 
-    private String msg;
+    private String msg;     //状态信息
 
-    private T data;
+    private T data;         //返回数据
 
-    private String timestamp;
+    private String timestamp;//时间戳
 
     public Result(T data) {
         this.data = data;
