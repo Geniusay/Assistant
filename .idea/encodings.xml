@@ -2,6 +2,15 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/assistant-common/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/assistant-common/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/assistant-plus-generator/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/assistant-plus-generator/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/assistant-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/assistant-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/assistant-util/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/assistant-util/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
   </component>
 </project>

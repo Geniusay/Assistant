@@ -8,13 +8,20 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Genius-boot" />
-        <module name="Assistant" />
+        <module name="assistant-util" />
+        <module name="assistant-plus-generator" />
+        <module name="assistant-common" />
+        <module name="assistant-service" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Assistant" options="-parameters" />
+      <module name="assistant-common" options="-parameters" />
+      <module name="assistant-plus-generator" options="-parameters" />
+      <module name="assistant-service" options="-parameters" />
+      <module name="assistant-util" options="-parameters" />
     </option>
   </component>
 </project>
