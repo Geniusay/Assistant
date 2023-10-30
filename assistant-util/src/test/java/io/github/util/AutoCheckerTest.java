@@ -39,7 +39,7 @@ public class AutoCheckerTest {
         boolean b = AutoChecker.check(Map.of(
                 1234,(obj)->(Integer)obj>1000,
                 "12345", (obj)->((String)obj).length() >3,
-                "969025903",(obj)-> RegexUtils.VerifyRegex((String)obj,RegexPattern.QQ),
+                "Geniusay",(obj)-> RegexUtils.VerifyRegex((String)obj,RegexPattern.QQ),
                 "123456789@qq.com",(obj)->RegexUtils.VerifyRegex((String)obj,RegexPattern.EMAIL),
                 new Date(),(obj)->((Date)obj).getTime()>100
                 )

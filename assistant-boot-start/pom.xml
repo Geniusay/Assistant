@@ -7,10 +7,11 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>assistant-plus-generator</artifactId>
+    <version>${assistant-boot-start.version}</version>
+    <artifactId>assistant-boot-start</artifactId>
     <packaging>jar</packaging>
-    <version>${assistant-plus-generator.version}</version>
-    <name>assistant-plus-generator</name>
+
+    <name>assistant-boot-start</name>
     <url>http://maven.apache.org</url>
 
     <properties>
@@ -18,7 +19,6 @@
     </properties>
 
     <dependencies>
-
         <dependency>
             <groupId>io.github.geniusay</groupId>
             <artifactId>assistant-common</artifactId>
@@ -26,20 +26,17 @@
 
         <dependency>
             <groupId>io.github.geniusay</groupId>
+            <artifactId>assistant-service</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.github.geniusay</groupId>
             <artifactId>assistant-util</artifactId>
         </dependency>
 
-        <!-- Velocity-->
         <dependency>
-            <groupId>org.apache.velocity</groupId>
-            <artifactId>velocity</artifactId>
-            <version>1.6.2</version>
+            <groupId>io.github.geniusay</groupId>
+            <artifactId>assistant-plus-generator</artifactId>
         </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
     </dependencies>
 </project>

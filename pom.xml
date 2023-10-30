@@ -8,6 +8,10 @@
         <module>assistant-util</module>
         <module>assistant-service</module>
         <module>assistant-common</module>
+        <module>assistant-boot-start</module>
+        <module>assistant-test</module>
+        <module>assistant-websocket</module>
+        <module>assistant-cache</module>
     </modules>
     <packaging>pom</packaging>
     <parent>
@@ -16,14 +20,14 @@
         <version>2.3.9.RELEASE</version>
         <relativePath/>
     </parent>
-    <groupId>io.github.969025903</groupId>
+    <groupId>io.github.geniusay</groupId>
     <artifactId>assistant</artifactId>
     <!--需要特别注意,你上传的是SNAPSHOT仓库,所以此处版本号后缀必须带SNAPSHOT-->
-    <version>1.0.8</version>
+    <version>1.0.0</version>
 
     <name>assistant</name>
     <description>Back-end development assistant </description>
-    <url>https://github.com/969025903/Assistant</url>
+    <url>https://github.com/Geniusay/Assistant</url>
 
     <licenses>
         <license>
@@ -46,9 +50,9 @@
     </developers>
 
     <scm>
-        <connection>https://github.com/969025903/Assistant.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com:969025903/Assistant.git</developerConnection>
-        <url>https://github.com/969025903/Assistant</url>
+        <connection>https://github.com/Geniusay/Assistant.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com:Geniusay/Assistant.git</developerConnection>
+        <url>https://github.com/Geniusay/Assistant</url>
     </scm>
 
     <profiles>
@@ -140,6 +144,13 @@
 
     <properties>
         <java.version>11</java.version>
+        <assistant-common.version>1.0.0</assistant-common.version>
+        <assistant-boot-start.version>1.0.0</assistant-boot-start.version>
+        <assistant-cache.version>1.0.0</assistant-cache.version>
+        <assistant-plus-generator.version>1.0.0</assistant-plus-generator.version>
+        <assistant-service.version>1.0.0</assistant-service.version>
+        <assistant-util.version>1.0.0</assistant-util.version>
+        <assistant-webscoket.version>1.0.0</assistant-webscoket.version>
         <spring-aop.version>5.2.13.RELEASE</spring-aop.version>
         <spring-boot-start-aop.version>2.4.6</spring-boot-start-aop.version>
         <spring-boot-starter-web.version>2.3.9.RELEASE</spring-boot-starter-web.version>
@@ -148,17 +159,51 @@
         <json-web-token.version>0.11.2</json-web-token.version>
         <jwt-gson.version>0.11.5</jwt-gson.version>
         <velocity.version>1.6.2</velocity.version>
+        <javassist.version>3.28.0-GA</javassist.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
-
+            <dependency>
+                <groupId>io.github.geniusay</groupId>
+                <artifactId>assistant-boot-start</artifactId>
+                <version>${assistant-boot-start.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.geniusay</groupId>
+                <artifactId>assistant-common</artifactId>
+                <version>${assistant-common.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.geniusay</groupId>
+                <artifactId>assistant-cache</artifactId>
+                <version>${assistant-cache.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.geniusay</groupId>
+                <artifactId>assistant-plus-generator</artifactId>
+                <version>${assistant-plus-generator.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.geniusay</groupId>
+                <artifactId>assistant-service</artifactId>
+                <version>${assistant-service.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.geniusay</groupId>
+                <artifactId>assistant-util</artifactId>
+                <version>${assistant-util.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.geniusay</groupId>
+                <artifactId>assistant-websocket</artifactId>
+                <version>${assistant-webscoket.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-aop</artifactId>
                 <version>${spring-aop.version}</version>
             </dependency>
-
 
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -169,6 +214,12 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-web</artifactId>
+                <version>${spring-boot-starter-web.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-websocket</artifactId>
                 <version>${spring-boot-starter-web.version}</version>
             </dependency>
 
@@ -208,7 +259,7 @@
             <dependency>
                 <groupId>org.javassist</groupId>
                 <artifactId>javassist</artifactId>
-                <version>3.28.0-GA</version>
+                <version>${javassist.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -222,7 +273,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
-            <version>2.4.6</version>
         </dependency>
 
         <dependency>
@@ -236,36 +286,26 @@
             <artifactId>lombok</artifactId>
         </dependency>
 
-
-
         <dependency>
             <groupId>org.javassist</groupId>
             <artifactId>javassist</artifactId>
-            <version>3.28.0-GA</version>
         </dependency>
 
         <!--导入fastJson-->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>1.2.83</version>
         </dependency>
 
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt-impl</artifactId>
-            <version>0.11.2</version>
-            <scope>runtime</scope>
         </dependency>
-
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt-gson</artifactId>
-            <version>0.11.5</version>
         </dependency>
-
     </dependencies>
-
 
     <build>
         <plugins>

@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://github.com/969025903/Assistant">
+  <a href="https://github.com/Geniusay/Assistant">
    <img alt="Mybatis-Plus-Logo" src="https://tmlgenius.github.io/assistant-docs/img/logo.png">
   </a>
 </p>
@@ -8,8 +8,8 @@
   Low code,high efficiency
 </p>
 <p align="center">
-  <a href="https://central.sonatype.com/artifact/io.github.969025903/assistant/1.0.6">
-    <img alt="maven" src="https://img.shields.io/maven-metadata/v.svg?label=maven-central&metadataUrl=https%3A%2F%2Frepo1.maven.org%2Fmaven2%2Fio%2Fgithub%2F969025903%2Fassistant%2Fmaven-metadata.xml">
+  <a href="https://central.sonatype.com/artifact/io.github.Geniusay/assistant/1.0.6">
+    <img alt="maven" src="https://img.shields.io/maven-metadata/v.svg?label=maven-central&metadataUrl=https%3A%2F%2Frepo1.maven.org%2Fmaven2%2Fio%2Fgithub%2FGeniusay%2Fassistant%2Fmaven-metadata.xml">
   </a>
 </p>
 
@@ -33,11 +33,11 @@ Assistant (opens new window)是一个后端开发的小助手，提供多种工�
 ## 快速开始
 
 -   Add Assistant dependency
-    - Latest Version: [![Maven Central](https://img.shields.io/maven-metadata/v.svg?label=maven-central&metadataUrl=https%3A%2F%2Frepo1.maven.org%2Fmaven2%2Fio%2Fgithub%2F969025903%2Fassistant%2Fmaven-metadata.xml)](https://central.sonatype.com/artifact/io.github.969025903/assistant/1.0.6)
+    - Latest Version: [![Maven Central](https://img.shields.io/maven-metadata/v.svg?label=maven-central&metadataUrl=https%3A%2F%2Frepo1.maven.org%2Fmaven2%2Fio%2Fgithub%2FGeniusay%2Fassistant%2Fmaven-metadata.xml)](https://central.sonatype.com/artifact/io.github.Geniusay/assistant/1.0.6)
     - Maven:
       ```xml
       <dependency>
-        <groupId>io.github.969025903</groupId>
+        <groupId>io.github.Geniusay</groupId>
         <artifactId>assistant</artifactId>
         <version>1.0.6</version>
       </dependency>

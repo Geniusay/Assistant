@@ -9,19 +9,31 @@
         <outputRelativeToContentRoot value="true" />
         <module name="Genius-boot" />
         <module name="assistant-util" />
-        <module name="assistant-plus-generator" />
+        <module name="assistant-test" />
         <module name="assistant-common" />
+        <module name="assistant-websocket" />
+        <module name="assistant-boot-start" />
+        <module name="assistant-plus-generator" />
+        <module name="assistant-cache" />
         <module name="assistant-service" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="assistant-boot-cache" target="11" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="Assistant" options="-parameters" />
+      <module name="Assistant" options="" />
+      <module name="assistant-boot-cache" options="-parameters" />
+      <module name="assistant-boot-start" options="-parameters" />
+      <module name="assistant-cache" options="-parameters" />
       <module name="assistant-common" options="-parameters" />
       <module name="assistant-plus-generator" options="-parameters" />
       <module name="assistant-service" options="-parameters" />
+      <module name="assistant-test" options="-parameters" />
       <module name="assistant-util" options="-parameters" />
+      <module name="assistant-websocket" options="-parameters" />
     </option>
   </component>
 </project>
