@@ -12,8 +12,8 @@ import java.io.IOException;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * @author Genius
- * @date 2023/09/06 19:24
+ *    Genius
+ *   2023/09/06 19:24
  **/
 @Component
 @ServerEndpoint("/chopperBot")

@@ -6,8 +6,8 @@ import java.lang.reflect.Field;
 import java.util.*;
 
 /**
- * @author Genius
- * @date 2023/07/21 09:56
+ *    Genius
+ *   2023/07/21 09:56
  **/
 public class ClassUtil {
 

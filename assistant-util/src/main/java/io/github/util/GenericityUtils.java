@@ -1,7 +1,7 @@
 package io.github.util;
 
 /**
- * @author Genius
+ *    Genius
  **/
 // 泛型工具类
 public class GenericityUtils {

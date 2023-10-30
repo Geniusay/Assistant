@@ -5,8 +5,8 @@ import javax.websocket.Session;
 import java.util.Map;
 
 /**
- * @author Genius
- * @date 2023/09/06 19:28
+ *    Genius
+ *   2023/09/06 19:28
  **/
 public interface MessageHandler {
 

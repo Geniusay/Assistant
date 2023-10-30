@@ -21,7 +21,7 @@ import java.util.Objects;
 
 
 /**
- * @author Genius
+ *    Genius
  *
  **/
 @Data

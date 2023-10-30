@@ -4,7 +4,7 @@ package io.github.pool;
 import io.github.common.Status;
 
 /**
- * @author Genius
+ *    Genius
 
  **/
 public class StatusPool {

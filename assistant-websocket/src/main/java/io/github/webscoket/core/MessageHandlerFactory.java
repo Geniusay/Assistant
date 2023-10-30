@@ -9,8 +9,8 @@ import javax.websocket.Session;
 import java.util.List;
 
 /**
- * @author Genius
- * @date 2023/09/06 19:34
+ *    Genius
+ *   2023/09/06 19:34
  **/
 @Component
 public class MessageHandlerFactory implements CommandLineRunner {

@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatus;
 
 /**
- * @author Genius
+ *    Genius
 
  **/
 

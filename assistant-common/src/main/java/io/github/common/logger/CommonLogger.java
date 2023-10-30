@@ -5,8 +5,8 @@ import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
 
 /**
- * @author Genius
- * @date 2023/10/26 21:59
+ *    Genius
+ *   2023/10/26 21:59
  **/
 @Component
 public class CommonLogger {

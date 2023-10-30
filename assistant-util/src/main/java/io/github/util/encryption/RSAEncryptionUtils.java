@@ -13,7 +13,7 @@ import java.security.spec.RSAPrivateCrtKeySpec;
 import java.security.spec.RSAPublicKeySpec;
 
 /**
- * @author Genius
+ *    Genius
 
  **/
 public class RSAEncryptionUtils implements EncryptionUtil {

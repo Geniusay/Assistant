@@ -1,7 +1,7 @@
 package io.github.util.regex;
 
 /**
- * @author Genius
+ *    Genius
 
  **/
 

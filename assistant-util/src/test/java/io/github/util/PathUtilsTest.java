@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 /**
- * @author Genius
+ *    Genius
  **/
 @SpringBootTest
 public class PathUtilsTest {

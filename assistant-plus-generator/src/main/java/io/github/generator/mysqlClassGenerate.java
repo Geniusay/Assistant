@@ -4,7 +4,7 @@ package io.github.generator;
 import io.github.generator.autotemplate.TemplateFile;
 
 /**
- * @author Genius
+ *    Genius
  **/
 public class mysqlClassGenerate extends AutoGenerate {
 

@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author Genius
- * @date 2023/09/06 19:49
+ *    Genius
+ *   2023/09/06 19:49
  **/
 public class MessageProtocol {
     private static final String head = "type@=%s|";

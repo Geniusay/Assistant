@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import java.io.File;
 
 /**
- * @author Genius
+ *    Genius
  **/
 
 /*

@@ -12,7 +12,7 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.util.Objects;
 
 /**
- * @author Genius
+ *    Genius
  **/
 public class CommonFileUtils {
 

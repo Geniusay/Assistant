@@ -3,7 +3,7 @@ package io.github.controller;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * @author Genius
+ *    Genius
  *
  **/
 @RestController

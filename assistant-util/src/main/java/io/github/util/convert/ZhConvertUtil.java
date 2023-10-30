@@ -1,8 +1,8 @@
 package io.github.util.convert;
 
 /**
- * @author Genius
- * @date 2023/10/28 02:58
+ *    Genius
+ *   2023/10/28 02:58
  **/
 public class ZhConvertUtil {
 

@@ -12,7 +12,7 @@ import javax.crypto.spec.DESKeySpec;
 import java.security.SecureRandom;
 
 /**
- * @author Genius
+ *    Genius
 
  **/
 @Data

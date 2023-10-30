@@ -6,8 +6,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @Date 2023/10/13
- * @Author xiaochun
+ *   2023/10/13
+ *    xiaochun
  */
 public abstract class AbstractMsgBuilder implements MsgBuilder{
     protected Map<String,Object> map;

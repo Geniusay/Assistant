@@ -1,7 +1,7 @@
 package io.github.util.encryption;
 
 /**
- * @author Genius
+ *    Genius
 
  **/
 public enum EncryptionType {

@@ -5,8 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 /**
- * @author Genius
- * @date 2023/10/26 22:00
+ *    Genius
+ *   2023/10/26 22:00
  **/
 @Component("sl4j")
 public class Sl4jLoggerHandler implements LoggerHandler{

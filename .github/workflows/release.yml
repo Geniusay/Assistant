@@ -1,30 +1,27 @@
 name: Publish package to the Maven Central Repository
 on:
   push:
-    branches:
-      - master
-
+    tags: [ "*" ]
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Set up JDK 11
+      - uses: actions/checkout@v2
+      - name: Set up Maven Central Repository
         uses: actions/setup-java@v2
         with:
-          java-version: '11'
+          java-version: '8'
           distribution: 'adopt'
           server-id: ossrh
           server-username: MAVEN_USERNAME
           server-password: MAVEN_PASSWORD
-      - name: Build with Maven
-        run: mvn clean install
-
-      - name: Deploy to Maven Central
-        run: mvn deploy -DskipTests
+      - id: install-secret-key
+        name: Install gpg secret key
+        run: |
+          cat <(echo -e "${{ secrets.OSSRH_GPG_SECRET_KEY }}") | gpg --batch --import
+          gpg --list-secret-keys --keyid-format LONG
+      - name: Publish package
         env:
-          GPG_KEY_NAME: ${{ secrets.OSSRH_GPG_SECRET_KEY }}
-          GPG_PASSPHRASE: ${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }}
           MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
-
+        run: mvn --batch-mode -Dgpg.passphrase=${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }} clean deploy

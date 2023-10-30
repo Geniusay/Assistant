@@ -1,8 +1,8 @@
 package io.github.common.msgbuilder;
 
 /**
- * @Date 2023/10/13
- * @Author xiaochun
+ *   2023/10/13
+ *    xiaochun
  */
 public interface MsgBuilder {
     MsgBuilder build(String key,Object data);

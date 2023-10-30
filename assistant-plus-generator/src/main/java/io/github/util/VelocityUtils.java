@@ -14,7 +14,7 @@ import java.io.File;
 import java.io.FileWriter;
 
 /**
- * @author Genius
+ *    Genius
  **/
 /*
  模板生成引擎，目前使用的是velocity，后期可以考虑使用freemarker

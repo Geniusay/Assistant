@@ -1,8 +1,8 @@
 package io.github.common;
 
 /**
- * @author Genius
- * @date 2023/10/17 01:30
+ *    Genius
+ *   2023/10/17 01:30
  **/
 
 /**

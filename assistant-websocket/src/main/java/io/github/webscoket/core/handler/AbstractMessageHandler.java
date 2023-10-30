@@ -6,8 +6,8 @@ import io.github.webscoket.core.WebSocketHandler;
 import java.util.Map;
 
 /**
- * @author Genius
- * @date 2023/09/06 19:45
+ *    Genius
+ *   2023/09/06 19:45
  **/
 
 public abstract class AbstractMessageHandler implements MessageHandler {
