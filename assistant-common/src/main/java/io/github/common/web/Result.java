@@ -1,4 +1,4 @@
-package io.github.common;
+package io.github.common.web;
 
 import io.github.common.Status;
 import io.github.pool.StatusPool;
