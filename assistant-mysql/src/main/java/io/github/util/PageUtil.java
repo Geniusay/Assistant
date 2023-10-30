@@ -1,8 +1,7 @@
 package io.github.util;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import io.github.common.web.PageVO;
-
+import io.github.common.PageVO;
 import java.util.ArrayList;
 
 public class PageUtil <T>{

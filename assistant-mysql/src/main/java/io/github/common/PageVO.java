@@ -1,4 +1,4 @@
-package io.github.common.web;
+package io.github.common;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

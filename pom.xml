@@ -12,6 +12,7 @@
         <module>assistant-test</module>
         <module>assistant-websocket</module>
         <module>assistant-cache</module>
+        <module>assistant-mysql</module>
     </modules>
     <packaging>pom</packaging>
     <parent>
@@ -23,7 +24,7 @@
     <groupId>io.github.geniusay</groupId>
     <artifactId>assistant</artifactId>
     <!--需要特别注意,你上传的是SNAPSHOT仓库,所以此处版本号后缀必须带SNAPSHOT-->
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 
     <name>assistant</name>
     <description>Back-end development assistant </description>
@@ -143,8 +144,9 @@
 
     <properties>
         <java.version>11</java.version>
-        <assistant-common.version>1.0.0</assistant-common.version>
-        <assistant-boot-start.version>1.0.0</assistant-boot-start.version>
+        <assistant-mysql.verison>1.0.0</assistant-mysql.verison>
+        <assistant-common.version>1.0.1</assistant-common.version>
+        <assistant-boot-start.version>1.0.1</assistant-boot-start.version>
         <assistant-cache.version>1.0.0</assistant-cache.version>
         <assistant-plus-generator.version>1.0.0</assistant-plus-generator.version>
         <assistant-service.version>1.0.0</assistant-service.version>
@@ -175,6 +177,11 @@
                 <groupId>io.github.geniusay</groupId>
                 <artifactId>assistant-common</artifactId>
                 <version>${assistant-common.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.geniusay</groupId>
+                <artifactId>assistant-mysql</artifactId>
+                <version>${assistant-mysql.verison}</version>
             </dependency>
             <dependency>
                 <groupId>io.github.geniusay</groupId>

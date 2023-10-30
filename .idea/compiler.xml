@@ -11,6 +11,7 @@
         <module name="assistant-util" />
         <module name="assistant-test" />
         <module name="assistant-common" />
+        <module name="assistant-mysql" />
         <module name="assistant-websocket" />
         <module name="assistant-boot-start" />
         <module name="assistant-plus-generator" />
@@ -29,6 +30,7 @@
       <module name="assistant-boot-start" options="-parameters" />
       <module name="assistant-cache" options="-parameters" />
       <module name="assistant-common" options="-parameters" />
+      <module name="assistant-mysql" options="-parameters" />
       <module name="assistant-plus-generator" options="-parameters" />
       <module name="assistant-service" options="-parameters" />
       <module name="assistant-test" options="-parameters" />
