@@ -231,16 +231,8 @@ public class TimeUtil {
      * @param endDate   结束日期（yyyy-MM-dd）
      * @param period    周期（天，周，月，年）
      * @return 切割之后的日期集合
-     * <li>startDate="2019-02-28",endDate="2019-03-05",period="day"</li>
-     * <li>结果为：[2019-02-28, 2019-03-01, 2019-03-02, 2019-03-03, 2019-03-04, 2019-03-05]</li><br>
-     * <li>startDate="2019-02-28",endDate="2019-03-25",period="week"</li>
-     * <li>结果为：[2019-02-28,2019-03-06, 2019-03-07,2019-03-13, 2019-03-14,2019-03-20,
-     * 2019-03-21,2019-03-25]</li><br>
-     * <li>startDate="2019-02-28",endDate="2019-05-25",period="month"</li>
-     * <li>结果为：[2019-02-28,2019-02-28, 2019-03-01,2019-03-31, 2019-04-01,2019-04-30,
-     * 2019-05-01,2019-05-25]</li><br>
-     * <li>startDate="2019-02-28",endDate="2020-05-25",period="year"</li>
-     * <li>结果为：[2019-02-28,2019-12-31, 2020-01-01,2020-05-25]</li><br>
+     * input startDate="2019-02-28",endDate="2019-03-05",period="day"
+     * output [2019-02-28, 2019-03-01, 2019-03-02, 2019-03-03, 2019-03-04, 2019-03-05]
      */
     public static List<String> splitDateToList(String startDate, String endDate, String period) {
         List<String> result = new ArrayList<>();
