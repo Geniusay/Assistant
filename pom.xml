@@ -144,14 +144,14 @@
 
     <properties>
         <java.version>11</java.version>
-        <assistant-mysql.verison>1.0.1</assistant-mysql.verison>
+        <assistant-mysql.verison>1.0.3</assistant-mysql.verison>
         <assistant-common.version>1.0.3</assistant-common.version>
         <assistant-boot-start.version>1.0.3</assistant-boot-start.version>
-        <assistant-cache.version>1.0.1</assistant-cache.version>
-        <assistant-plus-generator.version>1.0.1</assistant-plus-generator.version>
-        <assistant-service.version>1.0.1</assistant-service.version>
+        <assistant-cache.version>1.0.3</assistant-cache.version>
+        <assistant-plus-generator.version>1.0.3</assistant-plus-generator.version>
+        <assistant-service.version>1.0.3</assistant-service.version>
         <assistant-util.version>1.0.3</assistant-util.version>
-        <assistant-webscoket.version>1.0.1</assistant-webscoket.version>
+        <assistant-webscoket.version>1.0.3</assistant-webscoket.version>
         <spring-aop.version>5.2.13.RELEASE</spring-aop.version>
         <spring-boot-start-aop.version>2.4.6</spring-boot-start-aop.version>
         <spring-boot-starter-web.version>2.3.9.RELEASE</spring-boot-starter-web.version>
