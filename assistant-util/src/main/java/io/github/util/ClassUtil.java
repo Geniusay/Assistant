@@ -47,6 +47,8 @@ public class ClassUtil {
 
     /**
      * 类 to Map（浅转换，不考虑继承）
+     * @param obj 要转换的类
+     * @return 类对应的映射map User.class(name:xxxx,age:xx) => {name:xxxx,age:xx}
      */
     public static Map<String, Object> toMap(Object obj) throws IllegalAccessException {
         Map<String, Object> map = new HashMap<>();
@@ -62,6 +64,8 @@ public class ClassUtil {
 
     /**
      * 类 to Map（深转换，考虑继承）
+     * @param obj 要转换的类
+     * @return 类对应的映射map User.class(name:xxxx,age:xx) => {name:xxxx,age:xx}
      */
     public static Map<String, Object> toDeepMap(Object obj) throws IllegalAccessException {
         Map<String, Object> map = new HashMap<>();
