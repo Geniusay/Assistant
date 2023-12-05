@@ -38,8 +38,8 @@ Assistant (opens new window)是一个后端开发的小助手，提供多种工�
       ```xml
       <dependency>
         <groupId>io.github.Geniusay</groupId>
-        <artifactId>assistant</artifactId>
-        <version>1.0.8</version>
+        <artifactId>assistant-boot-start</artifactId>
+        <version>1.0.4</version>
       </dependency>
       ```
 
