@@ -5,7 +5,7 @@
     <parent>
       <artifactId>assistant</artifactId>
 <groupId>io.github.geniusay</groupId>
-<version>1.0.3</version>
+<version>1.0.4</version>
     </parent>
 
     <version>${assistant-webscoket.version}</version>

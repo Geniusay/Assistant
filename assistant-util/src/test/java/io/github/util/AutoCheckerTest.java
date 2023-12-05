@@ -1,7 +1,6 @@
 package io.github.util;
 
 
-import io.github.MainApplication;
 import io.github.util.autochecker.AutoChecker;
 import io.github.util.regex.RegexPattern;
 import io.github.util.regex.RegexUtils;
@@ -14,7 +13,7 @@ import java.util.Map;
 /**
  *    Genius
  **/
-@SpringBootTest(classes = MainApplication.class)
+@SpringBootTest
 public class AutoCheckerTest {
 
     @Test

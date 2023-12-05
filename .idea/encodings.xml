@@ -8,14 +8,17 @@
     <file url="file://$PROJECT_DIR$/assistant-boot-start/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/assistant-boot-start/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/assistant-cache/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/assistant-cache/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/assistant-common/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/assistant-common/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/assistant-mysql/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/assistant-mysql/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/assistant-plus-generator/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/assistant-plus-generator/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/assistant-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/assistant-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/assistant-test/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/assistant-test/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/assistant-util/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/assistant-util/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/assistant-websocket/src/main/java" charset="UTF-8" />

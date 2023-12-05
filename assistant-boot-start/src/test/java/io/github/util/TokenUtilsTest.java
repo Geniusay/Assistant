@@ -1,7 +1,6 @@
 package io.github.util;
 
 
-import io.github.MainApplication;
 import io.github.util.token.Token;
 import io.github.util.token.TokenUtil;
 import io.jsonwebtoken.Claims;
@@ -17,7 +16,7 @@ import java.util.Map;
  *    Genius
 
  **/
-@SpringBootTest(classes = MainApplication.class)
+@SpringBootTest
 public class TokenUtilsTest {
     @Autowired
     TokenUtil tokenUtils;

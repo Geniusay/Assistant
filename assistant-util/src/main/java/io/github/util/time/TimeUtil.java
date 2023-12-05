@@ -2,10 +2,7 @@ package io.github.util.time;
 
 import io.github.constant.TimeConstant;
 
-import java.time.Duration;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAccessor;
@@ -315,11 +312,34 @@ public class TimeUtil {
         }
     }
 
+    /**
+     * LocalDateTime 转 毫秒
+     * @param dateTime
+     * @return long 毫秒
+     */
+    public static long DateTimeToLong(LocalDateTime dateTime) {
+        return dateTime.toInstant(ZoneOffset.UTC).toEpochMilli();
+    }
+
+    /**
+     * LocalDateTimeStr 转 毫秒
+     * 格式: yyyy-mm-dd hh:mm:ss
+     * @param dateTimeStr
+     * @return long 毫秒
+     */
+    public static long DateTimeToLong(String dateTimeStr) {
+        LocalDateTime dateTime = parseDateTime(dateTimeStr);
+        return dateTime.toInstant(ZoneOffset.UTC).toEpochMilli();
+    }
+
+
     public static void main(String[] args) {
         System.out.println(today());
         System.out.println(tomorrow());
         System.out.println(yesterday());
         System.out.println(startOfDay(parseDateTime(yesterday())));
         System.out.println(endOfDay(parseDateTime(yesterday())));
+        System.out.println(DateTimeToLong("2023-11-11 12:34:56"));
+
     }
 }

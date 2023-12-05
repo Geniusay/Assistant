@@ -10,11 +10,22 @@ import java.util.concurrent.TimeUnit;
  *   2023/08/15 23:11
  **/
 @Data
-@AllArgsConstructor
 public class RedisKey {
     private String key;
     private long time;
     private TimeUnit timeUnit;
+
+    public RedisKey(String key, long time, TimeUnit timeUnit) {
+        this.key = key;
+        this.time = time;
+        this.timeUnit = timeUnit;
+    }
+
+    public RedisKey(String key) {
+        this.key = key;
+        this.time = -1;
+        this.timeUnit = TimeUnit.SECONDS;
+    }
 
     public String getKey(Object value){
         return String.format(key,value);

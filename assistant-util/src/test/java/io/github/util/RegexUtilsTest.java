@@ -1,7 +1,6 @@
 package io.github.util;
 
 
-import io.github.MainApplication;
 import io.github.util.regex.RegexUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
  **/
 
-@SpringBootTest(classes = MainApplication.class)
 public class RegexUtilsTest {
     @Autowired
     RegexUtils regexUtils;
