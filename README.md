@@ -33,7 +33,7 @@ Assistant (opens new window)是一个后端开发的小助手，提供多种工�
 ## 快速开始
 
 -   Add Assistant dependency
-    - Latest Version: [![Maven Central](https://img.shields.io/maven-metadata/v.svg?label=maven-central&metadataUrl=https%3A%2F%2Frepo1.maven.org%2Fmaven2%2Fio%2Fgithub%2FGeniusay%2Fassistant%2Fmaven-metadata.xml)](https://central.sonatype.com/artifact/io.github.Geniusay/assistant/1.0.6)
+    - Latest Version: [![Maven Central](https://img.shields.io/maven-metadata/v.svg?label=maven-central&metadataUrl=https%3A%2F%2Frepo1.maven.org%2Fmaven2%2Fio%2Fgithub%2Fgeniusay%2Fassistant%2Fmaven-metadata.xml)](https://central.sonatype.com/artifact/io.github.geniusay/assistant-boot-start/1.0.3)
     - Maven:
       ```xml
       <dependency>

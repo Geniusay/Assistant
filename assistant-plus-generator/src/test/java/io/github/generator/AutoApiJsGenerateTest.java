@@ -1,7 +1,6 @@
 package io.github.generator;
 
 
-import io.github.MainApplication;
 import io.github.controller.TestController;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +15,7 @@ import java.util.List;
 /**
  * ApiJs自动生成器
  */
-@SpringBootTest(classes = MainApplication.class)
+@SpringBootTest
 public class AutoApiJsGenerateTest {
 
     @Autowired
