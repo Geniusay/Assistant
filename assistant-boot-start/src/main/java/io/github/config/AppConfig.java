@@ -5,6 +5,9 @@ import org.springframework.context.annotation.Configuration;
 
 
 @Configuration
-@ComponentScan("io.github")
+@ComponentScan("io.github.*")
 public class AppConfig {
+
+    public AppConfig() {
+    }
 }
