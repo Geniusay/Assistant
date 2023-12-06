@@ -17,30 +17,35 @@ public class AssistantServiceImpl<M extends BaseMapper<T>,T> extends ServiceImpl
     @Resource
     M mapper;
 
-
     @Override
-    public IPage<T> BeanPageList(int page, int limit, List<String> params) {
-        Page<T> pageQuery = new Page<>(page, limit);
-        return mapper.selectPage(pageQuery,
-                new QueryWrapper<T>().select(params.toArray(new String[0]))
-        );
-    }
-
-    @Override
-    public IPage<T> BeanPageList(int page, int limit, List<String> params, List<String> orders, Boolean isAsc) {
+    public IPage<T> BeanPageList(int page, int limit, List<String> params,Map<String,Object> conditions, List<String> orders, Boolean isAsc) {
         Page<T> pageQuery = new Page<>(page, limit);
         QueryWrapper<T> select = new QueryWrapper<T>().select(params.toArray(new String[0]));
-        if (isAsc){
-            orders.forEach(
-                    select::orderByAsc
-            );
-        }else{
-            orders.forEach(
-                    select::orderByDesc
-            );
+        if(orders!=null && orders.size()>0){
+            if (isAsc){
+                orders.forEach(
+                        select::orderByAsc
+                );
+            }else{
+                orders.forEach(
+                        select::orderByDesc
+                );
+            }
         }
-
         return mapper.selectPage(pageQuery,select);
+    }
+
+
+    public IPage<T> BeanPageList(int page, int limit, List<String> params) {
+        return BeanPageList(page, limit, params,Map.of(),List.of(),false);
+    }
+
+    public IPage<T> BeanPageList(int page, int limit, List<String> params, Map<String,Object> conditions) {
+        return BeanPageList(page, limit, params,conditions,List.of(),false);
+    }
+
+    public IPage<T> BeanPageList(int page, int limit, List<String> params, List<String> orders, Boolean isAsc) {
+        return BeanPageList(page, limit, params,Map.of(),orders,isAsc);
     }
 
     @Override

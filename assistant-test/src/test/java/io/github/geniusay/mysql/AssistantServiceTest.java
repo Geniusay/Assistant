@@ -24,12 +24,12 @@ public class AssistantServiceTest {
 
     @Test
     public void testAssistantService(){
-        IPage<NoticeVO> noticeVOIPage = noticeDaoService.BeanPageVOList(1, 1, List.of("notice_id,title,author"), NoticeVO.class);
+        IPage<NoticeVO> noticeVOIPage = noticeDaoService.BeanPageVOList(1, 1, List.of("notice_id,title,author"),Map.of("notice_id","06dab345-b611-410a-a9d8-980ff11591c4"), NoticeVO.class);
         IPage<NoticeDO> noticeDOIPage = noticeDaoService.BeanPageList(1, 1, List.of("notice_id,title,author"));
-        System.out.println(noticeDaoService.getBean(List.of("notice_id,title"), Map.of("notice_id", "5bcd73d6-8546-42a7-8afe-1819643aac6c")));
-        System.out.println(noticeDaoService.getBeanVO(List.of("notice_id,title"), Map.of("notice_id", "06dab345-b611-410a-a9d8-980ff11591c4"), NoticeVO.class));
-        System.out.println(noticeDaoService.getBeanList(List.of("notice_id,title"), Map.of("author", "RVC社区官方")));
-        System.out.println(noticeDaoService.getBeanVOList(List.of("notice_id,title"), Map.of("author", "RVC社区官方"), NoticeVO.class));
+//        System.out.println(noticeDaoService.getBean(List.of("notice_id,title"), Map.of("notice_id", "5bcd73d6-8546-42a7-8afe-1819643aac6c")));
+//        System.out.println(noticeDaoService.getBeanVO(List.of("notice_id,title"), Map.of("notice_id", "06dab345-b611-410a-a9d8-980ff11591c4"), NoticeVO.class));
+//        System.out.println(noticeDaoService.getBeanList(List.of("notice_id,title"), Map.of("author", "RVC社区官方")));
+//        System.out.println(noticeDaoService.getBeanVOList(List.of("notice_id,title"), Map.of("author", "RVC社区官方"), NoticeVO.class));
         System.out.println(PageUtil.toPageVO(noticeVOIPage));
         System.out.println(PageUtil.toPageVO(noticeDOIPage));
     }

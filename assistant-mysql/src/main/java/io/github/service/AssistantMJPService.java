@@ -8,9 +8,8 @@ import java.util.Map;
 
 public interface AssistantMJPService<T> extends AssistantService<T> {
 
-    <V> IPage<V> BeanPageVOList(int page, int limit, List<String> params , List<String> orders,Class<V> vClass,Boolean isAes);
+    <V> IPage<V> BeanPageVOList(int page, int limit, List<String> params ,Map<String,Object> conditions, List<String> orders,Class<V> vClass,Boolean isAes);
 
-    <V> IPage<V> BeanPageVOList(int page, int limit, List<String> params,Class<V> vClass);
 
     <V> List<V> getBeanVOList(List<String> params,Map<String,Object> condition,Class<V> vClass);
 

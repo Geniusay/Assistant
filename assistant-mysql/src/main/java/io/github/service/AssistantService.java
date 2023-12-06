@@ -8,8 +8,7 @@ import java.util.Map;
 
 public interface AssistantService<T> {
 
-    IPage<T> BeanPageList(int page, int limit, List<String> params);
-    IPage<T> BeanPageList(int page, int limit, List<String> params , List<String> orders, Boolean isAsc);
+    IPage<T> BeanPageList(int page, int limit, List<String> params,Map<String,Object> conditions, List<String> orders, Boolean isAsc);
 
     T getBean(List<String> params, Map<String,Object> condition);
 
