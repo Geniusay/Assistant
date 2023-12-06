@@ -5,7 +5,11 @@ spring:
     port: 6379 # Redis服务器连接端口
     password: Genius123 # Redis服务器连接密码（默认为空）
     timeout: 3000ms # 连接超时时间（毫秒）
-
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3307/rvc2?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=UTC
+    username: root
+    password: root
 assistant:
   token:
     access-token-expire-time: 3600

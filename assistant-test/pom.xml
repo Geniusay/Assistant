@@ -3,7 +3,7 @@
     <parent>
           <artifactId>assistant</artifactId>
 <groupId>io.github.geniusay</groupId>
-<version>1.0.4</version>
+<version>1.0.5</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -18,24 +18,61 @@
     </properties>
 
     <dependencies>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.yulichang</groupId>
+            <artifactId>mybatis-plus-join</artifactId>
+            <version>1.2.4</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>io.github.geniusay</groupId>
             <artifactId>assistant-boot-start</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.github.geniusay</groupId>
+            <artifactId>assistant-mysql</artifactId>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>io.github.geniusay</groupId>
             <artifactId>assistant-service</artifactId>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>io.github.geniusay</groupId>
             <artifactId>assistant-cache</artifactId>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>

@@ -4,9 +4,9 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import io.github.common.PageVO;
 import java.util.ArrayList;
 
-public class PageUtil <T>{
+public class PageUtil{
 
-    public PageVO<T> toPageVO(IPage<T> page){
+    public static <T> PageVO<T> toPageVO(IPage<T> page){
         return new PageVO<T>(
                 page.getRecords(),
                 page.getCurrent(),
@@ -15,7 +15,7 @@ public class PageUtil <T>{
         );
     }
 
-    public PageVO<T> emptyPageVO(){
+    public static  <T> PageVO<T> emptyPageVO(){
         return new PageVO<T>(new ArrayList<T>(), -1, 0, 0);
     }
 

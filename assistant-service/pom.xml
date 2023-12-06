@@ -3,7 +3,7 @@
     <parent>
           <artifactId>assistant</artifactId>
 <groupId>io.github.geniusay</groupId>
-<version>1.0.4</version>
+<version>1.0.5</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -21,16 +21,19 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>io.github.geniusay</groupId>
             <artifactId>assistant-common</artifactId>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>io.github.geniusay</groupId>
             <artifactId>assistant-util</artifactId>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
