@@ -14,8 +14,12 @@ import java.util.Map;
 
 public class AssistantServiceImpl<M extends BaseMapper<T>,T> extends ServiceImpl<M,T> implements AssistantService<T> {
 
+    protected M mapper;
+
     @Resource
-    M mapper;
+    public void setMapper(M mapper){
+        this.mapper = mapper;
+    }
 
     @Override
     public IPage<T> BeanPageList(int page, int limit, List<String> params,Map<String,Object> conditions, List<String> orders, Boolean isAsc) {
