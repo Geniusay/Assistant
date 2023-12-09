@@ -39,7 +39,7 @@ Assistant (opens new window)是一个后端开发的小助手，提供多种工�
       <dependency>
         <groupId>io.github.Geniusay</groupId>
         <artifactId>assistant-boot-start</artifactId>
-        <version>1.0.8</version>
+        <version>1.0.9</version>
       </dependency>
       ```
 

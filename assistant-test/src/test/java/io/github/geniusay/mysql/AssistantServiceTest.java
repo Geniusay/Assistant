@@ -1,8 +1,12 @@
 package io.github.geniusay.mysql;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import io.github.common.JoinSection;
+import io.github.pojo.FeedbackDO;
 import io.github.pojo.NoticeDO;
+import io.github.pojo.vo.FeedbackVO;
 import io.github.pojo.vo.NoticeVO;
+import io.github.service.FeedbackDaoServiceImpl;
 import io.github.service.FeedbackTypeServiceImpl;
 import io.github.service.NoticeDaoServiceImpl;
 import io.github.util.PageUtil;
@@ -24,6 +28,9 @@ public class AssistantServiceTest {
     NoticeDaoServiceImpl noticeDaoService;
 
     @Resource
+    FeedbackDaoServiceImpl feedbackDaoService;
+
+    @Resource
     FeedbackTypeServiceImpl feedbackTypeService;
     @Test
     public void testAssistantService(){
@@ -36,5 +43,27 @@ public class AssistantServiceTest {
         System.out.println(feedbackTypeService.list());
         System.out.println(PageUtil.toPageVO(noticeVOIPage));
         System.out.println(PageUtil.toPageVO(noticeDOIPage));
+    }
+
+    @Test
+    public void testAssistantJoin(){
+        JoinSection typeJoin = JoinSection.builder()
+                .type(JoinSection.JoinType.LEFT)
+                .table("rvc_feedback_type")
+                .asName("type")
+                .connectColumn("t.type = type.id")
+                .build();
+        JoinSection statusJoin = JoinSection.builder()
+                .type(JoinSection.JoinType.LEFT)
+                .table("rvc_feedback_status")
+                .asName("status")
+                .connectColumn("t.status = status.id")
+                .build();
+        IPage<FeedbackVO> feedbackVOIPage = feedbackDaoService.BeanPageVOList(1, 10,
+                List.of("t.*", "type.type as typeName","status.status as statusName"),
+                List.of(typeJoin,statusJoin),
+                FeedbackVO.class
+        );
+        System.out.println(PageUtil.toPageVO(feedbackVOIPage));
     }
 }
