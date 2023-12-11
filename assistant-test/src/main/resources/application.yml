@@ -26,3 +26,7 @@ assistant:
         dataCenterId: 1
         register: register-redis
         startTime: 2023-12-05 00:00:00
+  mysql:
+    query-group:
+      feedback_list: fb_id,uid,title,type,status,comment_num,up_num,create_at
+      feedback_detail: fb_id,uid,title,content,type,status,comment_num,up_num,create_at

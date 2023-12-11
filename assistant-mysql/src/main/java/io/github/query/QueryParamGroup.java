@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Component
 @Data
@@ -20,5 +21,12 @@ public class QueryParamGroup {
     public List<String> getQueryParams(String queryType){
 
         return Optional.ofNullable(queryGroup.get(queryType)).orElse(List.of());
+    }
+
+    public List<String> getQueryParams(String queryType,String prefix){
+        List<String> list = Optional.ofNullable(queryGroup.get(queryType)).orElse(List.of());
+        return list.stream().map(
+                e -> prefix + "." + e
+        ).collect(Collectors.toList());
     }
 }

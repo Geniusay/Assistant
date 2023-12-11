@@ -45,13 +45,13 @@ public class AssistantMJPServiceImpl<M extends MPJJoinMapper<T>,T> extends Assis
     }
     @Override
     public <V> IPage<V> BeanPageVOList(int page, int limit, List<String> params, Map<String,Object> conditions, List<JoinSection> joinSections , List<String> orders, Class<V> vClass, Boolean isAsc){
-        MPJQueryWrapper<V> queryWrapper = new MPJQueryWrapper<V>()
-                .select(params.toArray(new String[0]));
+        MPJQueryWrapper<V> queryWrapper = new MPJQueryWrapper<V>();
+
         if(!conditions.isEmpty()){
             queryWrapper.allEq(conditions);
         }
 
-        join(queryWrapper,joinSections);
+        join(queryWrapper,joinSections,params);
 
         if(orders != null && orders.size() > 0){
             if(isAsc){
@@ -94,13 +94,15 @@ public class AssistantMJPServiceImpl<M extends MPJJoinMapper<T>,T> extends Assis
     public <V> V getBeanVO(List<String> params, Map<String, Object> condition,List<JoinSection> joinSections ,Class<V> vClass){
         MPJQueryWrapper<V> queryWrapper = new MPJQueryWrapper<V>().select(params.toArray(new String[0]))
                 .allEq(condition);
-        join(queryWrapper,joinSections);
+        join(queryWrapper,joinSections,params);
         return mapper.selectJoinOne(vClass,queryWrapper);
     }
 
-    private <V> void join(MPJQueryWrapper<V> queryWrapper,List<JoinSection> joinSections){
+    private <V> void join(MPJQueryWrapper<V> queryWrapper,List<JoinSection> joinSections,List<String> params){
+        List<String> newParams = new ArrayList<>(params);
         joinSections.forEach(
                 section->{
+                    newParams.add(section.getSelectSQL());
                     String sql = String.format("%s %s on %s",
                             section.getTable(),
                             section.getAsName(),
@@ -113,5 +115,6 @@ public class AssistantMJPServiceImpl<M extends MPJJoinMapper<T>,T> extends Assis
                     }
                 }
         );
+        queryWrapper.select(newParams.toArray(new String[0]));
     }
 }

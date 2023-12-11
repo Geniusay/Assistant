@@ -51,16 +51,20 @@ public class AssistantServiceTest {
                 .type(JoinSection.JoinType.LEFT)
                 .table("rvc_feedback_type")
                 .asName("type")
-                .connectColumn("t.type = type.id")
+                .connectColumn("type.id","t.type")
+                .selectSQL("type.type as typeName")
                 .build();
+
         JoinSection statusJoin = JoinSection.builder()
                 .type(JoinSection.JoinType.LEFT)
                 .table("rvc_feedback_status")
                 .asName("status")
                 .connectColumn("t.status = status.id")
+                .selectSQL("status.status as statusName")
                 .build();
+
         IPage<FeedbackVO> feedbackVOIPage = feedbackDaoService.BeanPageVOList(1, 10,
-                List.of("t.*", "type.type as typeName","status.status as statusName"),
+                List.of("t.*"),
                 List.of(typeJoin,statusJoin),
                 FeedbackVO.class
         );
