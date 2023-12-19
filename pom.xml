@@ -24,7 +24,7 @@
     <groupId>io.github.geniusay</groupId>
     <artifactId>assistant</artifactId>
     <!--需要特别注意,你上传的是SNAPSHOT仓库,所以此处版本号后缀必须带SNAPSHOT-->
-    <version>1.1.0</version>
+    <version>1.1.1</version>
 
     <name>assistant</name>
     <description>Back-end development assistant </description>
@@ -144,14 +144,14 @@
 
     <properties>
         <java.version>11</java.version>
-        <assistant-mysql.verison>1.1.0</assistant-mysql.verison>
-        <assistant-common.version>1.1.0</assistant-common.version>
-        <assistant-boot-start.version>1.1.0</assistant-boot-start.version>
-        <assistant-cache.version>1.1.0</assistant-cache.version>
-        <assistant-plus-generator.version>1.1.0</assistant-plus-generator.version>
-        <assistant-service.version>1.1.0</assistant-service.version>
-        <assistant-util.version>1.1.0</assistant-util.version>
-        <assistant-webscoket.version>1.1.0</assistant-webscoket.version>
+        <assistant-mysql.verison>1.1.1</assistant-mysql.verison>
+        <assistant-common.version>1.1.1</assistant-common.version>
+        <assistant-boot-start.version>1.1.1</assistant-boot-start.version>
+        <assistant-cache.version>1.1.1</assistant-cache.version>
+        <assistant-plus-generator.version>1.1.1</assistant-plus-generator.version>
+        <assistant-service.version>1.1.1</assistant-service.version>
+        <assistant-util.version>1.1.1</assistant-util.version>
+        <assistant-webscoket.version>1.1.1</assistant-webscoket.version>
         <spring-aop.version>5.2.13.RELEASE</spring-aop.version>
         <spring-boot-start-aop.version>2.4.6</spring-boot-start-aop.version>
         <spring-boot-starter-web.version>2.3.9.RELEASE</spring-boot-starter-web.version>

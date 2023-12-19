@@ -3,7 +3,7 @@
     <parent>
           <artifactId>assistant</artifactId>
 <groupId>io.github.geniusay</groupId>
-<version>1.1.0</version>
+<version>1.1.1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -21,6 +21,13 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!--        参数校验框架-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
             <scope>provided</scope>
         </dependency>
 

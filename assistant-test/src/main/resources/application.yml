@@ -1,3 +1,4 @@
+
 spring:
   redis:
     host: localhost # Redis服务器地址
@@ -11,6 +12,7 @@ spring:
     url: jdbc:mysql://localhost:3307/rvc2?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=UTC
     username: root
     password: root
+
 assistant:
   token:
     access-token-expire-time: 3600
@@ -26,7 +28,12 @@ assistant:
         dataCenterId: 1
         register: register-redis
         startTime: 2023-12-05 00:00:00
+    exception:
+      handler:
+        disables: springWebExceptionHandler
   mysql:
     query-group:
       feedback_list: fb_id,uid,title,type,status,comment_num,up_num,create_at
       feedback_detail: fb_id,uid,title,content,type,status,comment_num,up_num,create_at
+server:
+  port: 16666
