@@ -35,5 +35,9 @@ assistant:
     query-group:
       feedback_list: fb_id,uid,title,type,status,comment_num,up_num,create_at
       feedback_detail: fb_id,uid,title,content,type,status,comment_num,up_num,create_at
+  service-chain:
+    serviceMap:
+      haha: stringNotEmpty->stringNotEmpty[Ignore]->objectNotEmpty
+      test: objectNotEmpty->stringNotEmpty->stringNotEmpty[Ignore]->objectNotEmpty
 server:
   port: 16666
