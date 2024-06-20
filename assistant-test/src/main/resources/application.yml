@@ -37,7 +37,9 @@ assistant:
       feedback_detail: fb_id,uid,title,content,type,status,comment_num,up_num,create_at
   service-chain:
     serviceMap:
-      haha: stringNotEmpty->stringNotEmpty[Ignore]->objectNotEmpty
-      test: objectNotEmpty->stringNotEmpty->stringNotEmpty[Ignore]->objectNotEmpty
+      string: stringNotEmpty->objectNotEmpty
+      task: stringNotEmpty->objectNotEmpty->taskCheck
+      taskException: stringNotEmpty->objectNotEmpty->taskCheck-> Exception
+      ignoreTaskException: stringNotEmpty->objectNotEmpty->taskCheck-> Exception[ignore]
 server:
   port: 16666

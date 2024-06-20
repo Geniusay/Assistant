@@ -4,10 +4,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.PriorityQueue;
+import java.util.*;
 
 @Component
 public class ServicePointServiceChainProvider implements ServiceChainProvider{
@@ -23,6 +20,9 @@ public class ServicePointServiceChainProvider implements ServiceChainProvider{
         map.forEach(
                 (name, filterChain) ->{
                     List<AbstractFilterChain.ServicePoint> servicePoints = filterChain.servicePoints();
+                    if(Objects.isNull(servicePoints)||servicePoints.isEmpty()){
+                        return;
+                    }
                     for (AbstractFilterChain.ServicePoint point : servicePoints) {
                         int order = point.getOrder();
                         String serviceName = point.getServiceName();

@@ -1,4 +1,4 @@
-package io.github.servicechain.chain.demo;
+package io.github.chain;
 
 import io.github.servicechain.annotation.Chain;
 import io.github.servicechain.chain.AbstractFilterChain;
