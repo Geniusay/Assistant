@@ -6,11 +6,11 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-public class ServiceChainHandler{
+public class ServiceChainHandler<T> implements ChainHandler<T,Boolean>{
 
     private ReturnType returnType;
 
-    private Map<Integer, Supplier<?>> supplierMap;
+    private Map<Integer, Function<T,?>> supplierMap;
 
     private Map<Integer, SuccessCallback> successCallbackMap;
 
@@ -18,7 +18,7 @@ public class ServiceChainHandler{
 
     private ServiceChain<?> serviceChain;
 
-    private final Function<Object,Supplier<?>> originSupplier = (obj)->()->obj;
+    private final Function<T,?> originSupplier = (obj)->obj;
 
     public static ServiceChainBootstrap bootstrap(){
         return new ServiceChainBootstrap();
@@ -33,15 +33,15 @@ public class ServiceChainHandler{
     }
 
 
-    private boolean doFilter(Object obj,ServiceChain chain,int number){
+    private boolean doFilter(T obj,ServiceChain chain,int number){
         try {
-            Supplier<?> supplier = supplierMap.getOrDefault(number,originSupplier.apply(obj));
-            boolean res = chain.doFilter(supplier.get());
+            Function<T,?> function = supplierMap.getOrDefault(number,originSupplier);
+            boolean res = chain.doFilter(function.apply(obj));
             callback(res,number);
             return res||chain.isIgnore();
         }catch (Exception e){
             callback(false,number);
-            if (ReturnType.BOOLEAN.equals(returnType)) {
+            if (chain.isIgnore()||ReturnType.BOOLEAN.equals(returnType)) {
                 return chain.isIgnore();
             }
             throw e;
@@ -55,8 +55,9 @@ public class ServiceChainHandler{
         }
     }
 
-    public boolean execute(Object obj) {
-        ServiceChain temp = serviceChain;
+    @Override
+    public Boolean execute(T obj) {
+        ServiceChain<?> temp = serviceChain;
         int number = 0;
         while (temp != null) {
             number++;

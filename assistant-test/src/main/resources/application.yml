@@ -39,7 +39,7 @@ assistant:
     serviceMap:
       string: stringNotEmpty->objectNotEmpty
       task: stringNotEmpty->objectNotEmpty->taskCheck
-      taskException: stringNotEmpty->objectNotEmpty->taskCheck-> Exception
-      ignoreTaskException: stringNotEmpty->objectNotEmpty->taskCheck-> Exception[ignore]
+      taskException: stringNotEmpty->objectNotEmpty->taskCheck->Exception
+      ignoreTaskException: stringNotEmpty->objectNotEmpty->taskCheck->Exception[ignore]
 server:
   port: 16666
