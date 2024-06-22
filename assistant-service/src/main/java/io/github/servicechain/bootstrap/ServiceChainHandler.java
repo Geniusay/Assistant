@@ -10,7 +10,7 @@ public class ServiceChainHandler<T> implements ChainHandler<T,Boolean>{
 
     private ReturnType returnType;
 
-    private Map<Integer, Function<T,?>> supplierMap;
+    private Map<Integer, Function> supplierMap;
 
     private Map<Integer, SuccessCallback> successCallbackMap;
 

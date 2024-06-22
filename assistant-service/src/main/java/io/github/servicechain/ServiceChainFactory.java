@@ -35,11 +35,15 @@ public class ServiceChainFactory {
     }
 
 
-    public <T> ServiceChainBootstrap<T> get(String serviceName){
+    public ServiceChainBootstrap get(String serviceName){
         ServiceChain<?> serviceChain = serviceChainMap.get(serviceName);
         if(serviceChain == null){
             throw new RuntimeException("No service chain found for service: " + serviceName);
         }
         return ServiceChainHandler.bootstrap().serviceChain(serviceChain);
+    }
+
+    public ServiceChainBootstrap bootstrap(){
+        return ServiceChainHandler.bootstrap();
     }
 }

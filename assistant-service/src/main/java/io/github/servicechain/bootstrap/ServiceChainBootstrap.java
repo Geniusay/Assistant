@@ -10,11 +10,11 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 @Getter
-public class ServiceChainBootstrap<T> {
+public class ServiceChainBootstrap {
 
     private ReturnType returnType =  ReturnType.BOOLEAN;
 
-    private Map<Integer, Function<T,?>> supplierMap = new HashMap<>();
+    private Map<Integer, Function> supplierMap = new HashMap<>();
 
     private Map<Integer, SuccessCallback> successCallbackMap = new HashMap<>();
 
@@ -24,7 +24,7 @@ public class ServiceChainBootstrap<T> {
 
     private ServiceChain<?> tempChain;
 
-    public ServiceChainBootstrap<T> next(AbstractFilterChain<?> chain,boolean isIgnore){
+    public ServiceChainBootstrap next(AbstractFilterChain<?> chain,boolean isIgnore){
         ServiceChain<?> tempServiceChain = new ServiceChain<>(chain, null);
         tempServiceChain.setIgnore(isIgnore);
         if(serviceChain == null){
@@ -37,38 +37,38 @@ public class ServiceChainBootstrap<T> {
         return this;
     }
 
-    public ServiceChainBootstrap<T> next(AbstractFilterChain<?> chain){
+    public ServiceChainBootstrap next(AbstractFilterChain<?> chain){
         return this.next(chain,false);
     }
 
-    public ServiceChainBootstrap<T> next(AbstractFilterChain<?>...chains){
+    public ServiceChainBootstrap next(AbstractFilterChain<?>...chains){
         for (AbstractFilterChain<?> chain : chains) {
             this.next(chain,false);
         }
         return this;
     }
 
-    public  ServiceChainBootstrap<T> serviceChain(ServiceChain<?> serviceChain){
+    public  ServiceChainBootstrap serviceChain(ServiceChain<?> serviceChain){
         this.serviceChain = serviceChain;
         return this;
     }
 
-    public ServiceChainBootstrap<T> supplierMap(Map<Integer, Function<T,?>> supplierMap){
+    public <T> ServiceChainBootstrap supplierMap(Map<Integer, Function<T,?>> supplierMap){
         this.supplierMap.putAll(supplierMap);
         return this;
     }
 
-    public ServiceChainBootstrap<T> successCallbackMap(Map<Integer, SuccessCallback> successCallbackMap){
+    public ServiceChainBootstrap successCallbackMap(Map<Integer, SuccessCallback> successCallbackMap){
         this.successCallbackMap.putAll(successCallbackMap);
         return this;
     }
 
-    public ServiceChainBootstrap<T> failCallbackMap(Map<Integer, FailCallback> failCallbackMap){
+    public ServiceChainBootstrap failCallbackMap(Map<Integer, FailCallback> failCallbackMap){
         this.failCallbackMap.putAll(failCallbackMap);
         return this;
     }
 
-    public ServiceChainBootstrap<T> returnType(ReturnType returnType){
+    public ServiceChainBootstrap returnType(ReturnType returnType){
         this.returnType = returnType;
         return this;
     }

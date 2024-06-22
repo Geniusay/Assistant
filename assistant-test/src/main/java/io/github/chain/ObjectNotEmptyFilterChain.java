@@ -12,7 +12,7 @@ public class ObjectNotEmptyFilterChain extends AbstractFilterChain<Object> {
     @Override
     public List<ServicePoint> servicePoints(){
         return List.of(
-                new ServicePoint("hello",5),
+                new ServicePoint("hello",5,true),
                 new ServicePoint("world",4)
         );
     }

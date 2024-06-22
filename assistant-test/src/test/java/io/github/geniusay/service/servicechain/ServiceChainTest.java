@@ -1,10 +1,11 @@
 package io.github.geniusay.service.servicechain;
 
+import io.github.chain.ObjectNotEmptyFilterChain;
+import io.github.chain.StringNotEmptyFilterChain;
 import io.github.pojo.TaskDO;
 import io.github.servicechain.ServiceChainFactory;
 import io.github.servicechain.bootstrap.ReturnType;
 import io.github.servicechain.bootstrap.ServiceChainBootstrap;
-import io.github.servicechain.chain.ServiceChainProvider;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,7 +13,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import javax.annotation.Resource;
-import java.util.List;
 import java.util.Map;
 
 @RunWith(SpringRunner.class)
@@ -26,11 +26,7 @@ public class ServiceChainTest {
     @Test
     public void testCommonChain(){
         String str = "12345";
-        String empty = "";
-
-        ServiceChainBootstrap<String> bootstrap = factory.get("string");
-        System.out.println(bootstrap.execute(str));
-        System.out.println(bootstrap.execute(empty));
+        boolean res = factory.get("string").execute(str);
     }
 
     @Test
@@ -39,9 +35,9 @@ public class ServiceChainTest {
         TaskDO empty = new TaskDO(12, "", "");
         TaskDO errorTask = new TaskDO(12, "1234567890", "error");
 
-        ServiceChainBootstrap<TaskDO> bootstrap = factory
-                .<TaskDO>get("task").
-                supplierMap(Map.of(1, TaskDO::getTaskName));
+        ServiceChainBootstrap bootstrap = factory
+                .get("task")
+                .<TaskDO>supplierMap(Map.of(1, TaskDO::getTaskName));
 
         System.out.println(bootstrap.execute(task));
         System.out.println(bootstrap.execute(empty));
@@ -54,10 +50,16 @@ public class ServiceChainTest {
         TaskDO empty = new TaskDO(12, "", "");
         TaskDO errorTask = new TaskDO(12, "1234567890", "error");
 
-        ServiceChainBootstrap<TaskDO> bootstrap = factory
-                .<TaskDO>get("ignoreTaskException")
+        ServiceChainBootstrap bootstrap = factory
+                .get("ignoreTaskException")
                 .returnType(ReturnType.THROW)
-                .supplierMap(Map.of(1, TaskDO::getTaskName));
+                .<TaskDO>supplierMap(Map.of(1, TaskDO::getTaskName))
+                .failCallbackMap(Map.of(
+                        1, () -> System.out.println("taskName is empty")
+                ))
+                .successCallbackMap(Map.of(
+                        1, () -> System.out.println("taskName not empty")
+                ));
 
         System.out.println(bootstrap.execute(task));
         System.out.println(bootstrap.execute(empty));
@@ -70,13 +72,25 @@ public class ServiceChainTest {
         TaskDO empty = new TaskDO(12, "", "");
         TaskDO errorTask = new TaskDO(12, "1234567890", "error");
 
-        ServiceChainBootstrap<TaskDO> bootstrap = factory
-                .<TaskDO>get("ignoreTaskException")
+        ServiceChainBootstrap bootstrap = factory
+                .get("taskException")
                 .returnType(ReturnType.THROW)
-                .supplierMap(Map.of(1, TaskDO::getTaskName));
+                .<TaskDO>supplierMap(Map.of(1, TaskDO::getTaskName));
 
         System.out.println(bootstrap.execute(task));
         System.out.println(bootstrap.execute(empty));
         System.out.println(bootstrap.execute(errorTask));
+    }
+
+    @Test
+    public void testBuildChain(){
+        boolean res = factory.bootstrap()
+                .next(new ObjectNotEmptyFilterChain(), new StringNotEmptyFilterChain())
+                .next(factory.getChain("Exception"), true)
+                .next(factory.getChain("taskCheck"))
+                .<TaskDO>supplierMap(
+                        Map.of(2, TaskDO::getTaskName)
+                ).execute(new TaskDO(12, "taskHello", "hello"));
+        System.out.println(res);
     }
 }
