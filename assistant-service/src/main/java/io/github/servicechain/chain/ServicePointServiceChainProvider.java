@@ -12,11 +12,10 @@ public class ServicePointServiceChainProvider implements ServiceChainProvider{
     @Resource
     private ApplicationContext context;
 
-    @Override
-    public Map<String, ServiceChain<?>> provide(Map<String, AbstractFilterChain> map) {
-        Map<String,ServiceChain<?>> res =  new HashMap<>();
-        Map<String, PriorityQueue<ServiceChain<?>>> priorityQueueMap = new HashMap<>();
 
+    @Override
+    public Map<String, List<ChainBluePrint>> provideBluePrint(Map<String, AbstractFilterChain> map) {
+        Map<String,PriorityQueue<ChainBluePrint>> bluePrintMap = new HashMap<>();
         map.forEach(
                 (name, filterChain) ->{
                     List<AbstractFilterChain.ServicePoint> servicePoints = filterChain.servicePoints();
@@ -26,27 +25,17 @@ public class ServicePointServiceChainProvider implements ServiceChainProvider{
                     for (AbstractFilterChain.ServicePoint point : servicePoints) {
                         int order = point.getOrder();
                         String serviceName = point.getServiceName();
-                        if (!priorityQueueMap.containsKey(serviceName)) {
-                            priorityQueueMap.put(serviceName,new PriorityQueue<>());
-                        }
-                        ServiceChain<?> serviceChain = new ServiceChain<>(order, filterChain, null);
-                        serviceChain.setChainName(name);
-                        serviceChain.setIgnore(point.isIgnore());
-                        priorityQueueMap.get(serviceName).add(serviceChain);
+                        bluePrintMap.computeIfAbsent(serviceName,(k)->new PriorityQueue<>())
+                                .add(new ChainBluePrint(point.isIgnore(),filterChain,order));
                     }
                 }
         );
-
-        priorityQueueMap.forEach(
-                (serviceName, priorityQueue)->{
-                    ServiceChain<?> head = null;
-                    for (ServiceChain<?> serviceChain : priorityQueue) {
-                        serviceChain.setNext(head);
-                        head = serviceChain;
-                    }
-                    res.put(serviceName,head);
+        Map<String,List<ChainBluePrint>> ans = new HashMap<>();
+        bluePrintMap.forEach(
+                (k,v)->{
+                    ans.put(k,new ArrayList<>(v));
                 }
         );
-        return res;
+        return ans;
     }
 }

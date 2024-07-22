@@ -4,7 +4,6 @@ import io.github.servicechain.chain.ServiceChain;
 
 import java.util.Map;
 import java.util.function.Function;
-import java.util.function.Supplier;
 
 public class ServiceChainHandler<T> implements ChainHandler<T,Boolean>{
 

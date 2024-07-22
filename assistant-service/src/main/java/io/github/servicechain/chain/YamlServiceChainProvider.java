@@ -4,9 +4,7 @@ import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -18,40 +16,44 @@ public class YamlServiceChainProvider implements  ServiceChainProvider{
     private Map<String, String> serviceMap = Collections.emptyMap();
 
     private static final String IGNORE = "IGNORE";
+
     @Override
-    public Map<String, ServiceChain<?>> provide(Map<String, AbstractFilterChain> map) {
-        Map<String,ServiceChain<?>> res = new HashMap<>();
+    public Map<String, List<ChainBluePrint>> provideBluePrint(Map<String, AbstractFilterChain> map) {
+        Map<String,List<ChainBluePrint>> res = new HashMap<>();
         Pattern pattern = Pattern.compile("(\\w+)\\[(\\w+)]");
         serviceMap.forEach(
-            (serviceName,str)->{
-                String[] chains = str.split("->");
-                int order = 0;
-                ServiceChain<?> head = null;
-                for (int i=chains.length-1;i>=0;i--) {
-                    String chain = chains[i];
-                    ServiceChain<?> temp;
-                    if(chain.contains("[")){
-                        Matcher matcher = pattern.matcher(chain);
-                        if(matcher.find()){
-                            String chainName = matcher.group(1);
-                            temp = new ServiceChain<>(order++,map.get(chainName),null);
-                            if(IGNORE.equalsIgnoreCase(matcher.group(2))){
-                                temp.setIgnore(true);
+                (serviceName,str)->{
+                    String[] chains = str.split("->");
+                    int order = 0;
+                    List<ChainBluePrint> bluePrints = new ArrayList<>();
+                    for (String chainName:chains) {
+                        ChainBluePrint bluePrint;
+                        boolean isIgnore = false;
+                        if(chainName.contains("[")){
+                            Matcher matcher = pattern.matcher(chainName);
+                            if(matcher.find()){
+                                chainName = matcher.group(1);
+                                isIgnore = IGNORE.equalsIgnoreCase(matcher.group(2));
+
+                            }else{
+                                continue;
                             }
-                            temp.setChainName(chainName);
-                        }else{
-                            continue;
                         }
-                    }else{
-                        temp = new ServiceChain<>(order++,map.get(chain),null);
-                        temp.setChainName(chain);
+                        AbstractFilterChain chain = map.getOrDefault(chainName, null);
+                        if(chain==null){
+                            throw new RuntimeException("service name "+chainName+" not found");
+                        }
+                        bluePrint = ChainBluePrint.builder()
+                                .isIgnore(isIgnore)
+                                .chain(chain)
+                                .order(order++).build();
+
+                        bluePrints.add(bluePrint);
                     }
-                    temp.setNext(head);
-                    head = temp;
+                    res.put(serviceName,bluePrints);
                 }
-                res.put(serviceName,head);
-            }
         );
         return res;
     }
+
 }

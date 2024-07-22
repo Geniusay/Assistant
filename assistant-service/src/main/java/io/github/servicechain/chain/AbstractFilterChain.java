@@ -12,7 +12,9 @@ public abstract class AbstractFilterChain<V> implements FilterChain<V>{
     }
 
 
-    public abstract List<ServicePoint> servicePoints();
+    public List<ServicePoint> servicePoints(){
+        return null;
+    };
 
     @Getter
     static protected class ServicePoint{

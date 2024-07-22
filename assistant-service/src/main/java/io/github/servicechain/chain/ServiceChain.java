@@ -1,33 +1,38 @@
 package io.github.servicechain.chain;
 
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-public class ServiceChain<T> implements Comparable<ServiceChain<T>>{
+public class ServiceChain<T>{
     @Getter
     private int order = 5;
 
     @Getter
     private AbstractFilterChain<T> chain;
 
-    @Getter
-    @Setter
-    private String chainName;
-
     private boolean isIgnore = false;
 
-    private ServiceChain<?> next;
-
-    public ServiceChain(AbstractFilterChain<T> chain) {
-        this.chain = chain;
+    private ServiceChain() {
     }
 
+    private ServiceChain<?> next;
     public ServiceChain(int order, AbstractFilterChain<T> chain, ServiceChain<?> next) {
         this.order = order;
         this.chain = chain;
         this.next = next;
+    }
+
+    public ServiceChain(int order, AbstractFilterChain<T> chain, boolean isIgnore) {
+        this.order = order;
+        this.chain = chain;
+        this.isIgnore = isIgnore;
+    }
+
+    public ServiceChain(ChainBluePrint bluePrint){
+        this.order = bluePrint.getOrder();
+        this.chain = bluePrint.getChain();
+        this.isIgnore =bluePrint.isIgnore();
     }
 
     public ServiceChain(AbstractFilterChain<T> chain, ServiceChain<?> next) {
@@ -56,8 +61,7 @@ public class ServiceChain<T> implements Comparable<ServiceChain<T>>{
         return this.isIgnore;
     }
 
-    @Override
-    public int compareTo(ServiceChain<T> o) {
-        return this.getOrder() - o.getOrder() ;
+    public static ServiceChain<?> empty(){
+        return new ServiceChain();
     }
 }
