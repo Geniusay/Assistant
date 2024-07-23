@@ -1,17 +1,20 @@
 package io.github.servicechain;
 
-import org.apache.tomcat.jni.Time;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ServiceChainContext {
 
     private static final ThreadLocal<ServiceChainContext> CONTEXT = ThreadLocal.withInitial(ServiceChainContext::new);
 
+    private List<Object> resultRecord;
     private final Map<String,Object> data;
 
     private ServiceChainContext() {
+        resultRecord = new ArrayList<>();
         this.data = new HashMap<>();
     }
 
@@ -27,8 +30,12 @@ public class ServiceChainContext {
         return context().data.get(key);
     }
 
-    public static void set(String key, Object value){
-        context().data.put(key, value);
+    public static void recordSet(String key, Object value){
+        context().resultRecord.add(value);
+        set(key, value);
+    }
+    public static Object set(String key, Object value){
+        return context().data.put(key, value);
     }
 
     public static void setAll(Map<String,Object> data){
@@ -49,5 +56,9 @@ public class ServiceChainContext {
 
     public static void extendTo(ServiceChainContext context){
         ServiceChainContext.setAll(context.data);
+    }
+
+    public static Object getPreSetResult(){
+        return context().resultRecord.isEmpty()?null: context().resultRecord.get(context().resultRecord.size()-1);
     }
 }

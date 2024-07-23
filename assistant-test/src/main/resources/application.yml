@@ -41,5 +41,6 @@ assistant:
       task: stringNotEmpty->objectNotEmpty->taskCheck
       taskException: stringNotEmpty->objectNotEmpty->taskCheck->Exception
       ignoreTaskException: stringNotEmpty->objectNotEmpty->taskCheck->Exception[ignore]
+      getResult: stringNotEmpty->objectNotEmpty->returnMap
 server:
   port: 16666

@@ -50,6 +50,6 @@ public abstract class MultiArgsFilterChain<T> extends AbstractFilterChain<Object
     }
 
     private void saveRes(T result){
-        ServiceChainContext.set(filterId(),result);
+        ServiceChainContext.recordSet(filterId(),result);
     }
 }

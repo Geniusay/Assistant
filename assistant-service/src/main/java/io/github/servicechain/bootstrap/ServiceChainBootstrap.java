@@ -78,4 +78,9 @@ public class ServiceChainBootstrap {
         return handler.execute(obj);
     }
 
+    public <V,T> V executeAndReturn(T obj){
+        ServiceChainHandler<T> handler = new ServiceChainHandler<T>(this);
+        return handler.executeAndReturn(obj);
+    }
+
 }

@@ -1,5 +1,6 @@
 package io.github.servicechain.bootstrap;
 
+import io.github.servicechain.ServiceChainContext;
 import io.github.servicechain.chain.ServiceChain;
 
 import java.util.Map;
@@ -71,5 +72,13 @@ public class ServiceChainHandler<T> implements ChainHandler<T,Boolean>{
             }
         }
         return true;
+    }
+
+    public <V> V executeAndReturn(T obj){
+        if (!execute(obj)) {
+            return null;
+        }else {
+            return (V) ServiceChainContext.getPreSetResult();
+        }
     }
 }

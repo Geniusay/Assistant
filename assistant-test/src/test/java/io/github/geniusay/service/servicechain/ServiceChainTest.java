@@ -2,6 +2,7 @@ package io.github.geniusay.service.servicechain;
 
 import io.github.chain.ObjectNotEmptyFilterChain;
 import io.github.chain.StringNotEmptyFilterChain;
+import io.github.common.Args;
 import io.github.pojo.TaskDO;
 import io.github.servicechain.ServiceChainFactory;
 import io.github.servicechain.bootstrap.ReturnType;
@@ -92,5 +93,20 @@ public class ServiceChainTest {
                         Map.of(2, TaskDO::getTaskName)
                 ).execute(new TaskDO(12, "taskHello", "hello"));
         System.out.println(res);
+    }
+
+    @Test
+    public void testReturnResult(){
+        System.out.println(factory.get("getResult")
+                .returnType(ReturnType.THROW)
+                .<Args>supplierMap(Map.of(
+                        1, (args) -> args.get(0),
+                        3,(args)-> args.args()
+                ))
+                .<Map,Args>executeAndReturn(
+                        Args.of("hello", "world")
+                )
+        );
+
     }
 }

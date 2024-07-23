@@ -6,9 +6,12 @@ import io.github.servicechain.chain.AbstractFilterChain;
 import io.github.servicechain.chain.ChainBluePrint;
 import io.github.servicechain.chain.ServiceChain;
 import io.github.servicechain.chain.ServiceChainProvider;
+import io.github.servicechain.common.ServiceHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +23,9 @@ public class ServiceChainFactory {
     private final Map<String, ServiceChain> serviceChainMap;
 
     private final Map<String,List<ChainBluePrint>> chainBluePrintMap;
+
+    @Resource
+    private ServiceHelper helper;
 
     @Autowired
     public ServiceChainFactory(ApplicationContext applicationContext){
@@ -40,15 +46,28 @@ public class ServiceChainFactory {
     }
 
     public ServiceChainBootstrap get(String serviceName){
-        ServiceChain<?> serviceChain = serviceChainMap.get(serviceName);
+        return get(serviceName,true);
+    }
+
+    public ServiceChainBootstrap get(String serviceName,boolean singleton){
+        ServiceChain<?> serviceChain;
+        if(singleton){
+            serviceChain = serviceChainMap.get(serviceName);
+        }else{
+            serviceChain = ChainBluePrint.buildServiceChain(chainBluePrintMap.get(serviceName));
+        }
+
         if(serviceChain == null){
             throw new RuntimeException("No service chain found for service: " + serviceName);
         }
         return ServiceChainHandler.bootstrap().serviceChain(serviceChain);
     }
-
     public ServiceChainBootstrap bootstrap(){
         return ServiceChainHandler.bootstrap();
+    }
+
+    public ServiceHelper helper(){
+        return helper;
     }
 
 }
