@@ -68,7 +68,7 @@ public class SharedListTest {
         List<String> list2 = new ArrayList<>();
         List<String> list3 = new ArrayList<>();
         List<String> copyList = new ArrayList<>();
-        for (int i = 0; i < 1000000; i++) {
+        for (int i = 0; i < 10000000; i++) {
             list1.add("a" + i);
             list2.add("A" + i);
             list3.add("b" + i);
@@ -86,14 +86,6 @@ public class SharedListTest {
             copyList.addAll(list3);
         }, "copy");
 
-        logTime(() -> {
-            int i = 0;
-            SharedList<String> data = sharedListSafeBag.getData();
-            for (String datum : data) {
-                i++;
-            }
-            System.out.println(i);
-        }, "foreach merge");
 
         logTime(() -> {
             int i = 0;
@@ -102,6 +94,15 @@ public class SharedListTest {
             }
             System.out.println(i);
         }, "foreach copy");
+
+        logTime(() -> {
+            int i = 0;
+            SharedList<String> data = sharedListSafeBag.getData();
+            for (String datum : data) {
+                i++;
+            }
+            System.out.println(i);
+        }, "foreach merge");
     }
 
     public void logTime(Runnable runnable,String name){
